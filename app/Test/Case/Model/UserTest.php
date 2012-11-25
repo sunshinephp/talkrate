@@ -13,7 +13,9 @@ class UserTest extends CakeTestCase {
  * @var array
  */
 	public $fixtures = array(
-		'app.user'
+		'app.user',
+		'app.talk_rating',
+		'app.talk'
 	);
 
 /**
