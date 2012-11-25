@@ -12,7 +12,7 @@ class AppSchema extends CakeSchema {
 		'id' => array('type' => 'integer', 'null' => false, 'default' => null, 'key' => 'primary'),
 		'user_id' => array('type' => 'integer', 'null' => false, 'default' => null, 'length' => 10, 'key' => 'index'),
 		'talk_id' => array('type' => 'integer', 'null' => false, 'default' => null),
-		'rating' => array('type' => 'boolean', 'null' => true, 'default' => null),
+		'rating' => array('type' => 'integer', 'null' => true, 'default' => null, 'length' => 2),
 		'indexes' => array(
 			'PRIMARY' => array('column' => 'id', 'unique' => 1),
 			'user_ratings' => array('column' => array('user_id', 'talk_id'), 'unique' => 1)
