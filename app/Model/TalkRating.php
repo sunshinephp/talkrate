@@ -36,9 +36,9 @@ class TalkRating extends AppModel {
 		),
 		'rating' => array(
 			'between' => array(
-				'rule' => array('between'),
-				//'message' => 'Your custom message here',
-				//'allowEmpty' => false,
+				'rule' => array('between', 1, 5),
+				'message' => 'Please enter a rating between 1 and 5',
+				'allowEmpty' => true,
 				//'required' => false,
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
