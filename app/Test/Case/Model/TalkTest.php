@@ -13,7 +13,9 @@ class TalkTest extends CakeTestCase {
  * @var array
  */
 	public $fixtures = array(
-		'app.talk'
+		'app.talk',
+		'app.talk_rating',
+		'app.user'
 	);
 
 /**
