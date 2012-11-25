@@ -20,11 +20,10 @@ class Talk extends AppModel {
  * @var array
  */
 	public $validate = array(
-		'id' => array(
-			'numeric' => array(
-				'rule' => array('numeric'),
-				//'message' => 'Your custom message here',
-				//'allowEmpty' => false,
+		'name' => array(
+			'notEmpty' => array(
+				'rule' => array('notEmpty'),
+				'message' => 'Please enter a valid name for the talk',
 				//'required' => false,
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
@@ -33,18 +32,19 @@ class Talk extends AppModel {
 		'first_name' => array(
 			'alphanumeric' => array(
 				'rule' => array('alphanumeric'),
-				//'message' => 'Your custom message here',
-				//'allowEmpty' => false,
+				'message' => 'Please enter a valid first name for the presenter',
+				'allowEmpty' => false,
 				//'required' => false,
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 		),
+
 		'last_name' => array(
 			'alphanumeric' => array(
 				'rule' => array('alphanumeric'),
-				//'message' => 'Your custom message here',
-				//'allowEmpty' => false,
+				'message' => 'Please enter a valid last name for the presenter',
+				'allowEmpty' => false,
 				//'required' => false,
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
@@ -53,8 +53,8 @@ class Talk extends AppModel {
 		'email' => array(
 			'email' => array(
 				'rule' => array('email'),
-				//'message' => 'Your custom message here',
-				//'allowEmpty' => false,
+				'message' => 'Please enter a valid email address for the presenter',
+				'allowEmpty' => true,
 				//'required' => false,
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
@@ -64,7 +64,7 @@ class Talk extends AppModel {
 			'alphanumeric' => array(
 				'rule' => array('alphanumeric'),
 				//'message' => 'Your custom message here',
-				//'allowEmpty' => false,
+				'allowEmpty' => true,
 				//'required' => false,
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
@@ -74,51 +74,51 @@ class Talk extends AppModel {
 			'alphanumeric' => array(
 				'rule' => array('alphanumeric'),
 				//'message' => 'Your custom message here',
-				//'allowEmpty' => false,
+				'allowEmpty' => true,
 				//'required' => false,
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 		),
 		'talk_category' => array(
-			'alphanumeric' => array(
-				'rule' => array('alphanumeric'),
+			'alphaNumerica' => array(
+				'rule' => array('alphaNumeric'),
 				//'message' => 'Your custom message here',
-				//'allowEmpty' => false,
+				'allowEmpty' => true,
 				//'required' => false,
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 		),
 		'is_most_desired' => array(
-			'boolean' => array(
-				'rule' => array('boolean'),
+			//'boolean' => array(
+			//	'rule' => array('boolean'),
 				//'message' => 'Your custom message here',
 				//'allowEmpty' => false,
 				//'required' => false,
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
+			//),
 		),
 		'slides' => array(
 			'url' => array(
 				'rule' => array('url'),
-				//'message' => 'Your custom message here',
-				//'allowEmpty' => false,
+				'message' => 'Please enter a valid url for the slides',
+				'allowEmpty' => true,
 				//'required' => false,
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 		),
 		'is_sponsor' => array(
-			'boolean' => array(
-				'rule' => array('boolean'),
+			//'boolean' => array(
+				//'rule' => array('boolean'),
 				//'message' => 'Your custom message here',
 				//'allowEmpty' => false,
 				//'required' => false,
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
+			//),
 		),
 	);
 
