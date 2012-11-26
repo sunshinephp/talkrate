@@ -27,7 +27,6 @@ $appName = 'Sunshine PHP Talks';
 	<?php
 		echo $this->Html->meta('viewport', null, array('name' => 'viewport', 'content' => "width=device-width, initial-scale=1.0"));
 	echo $this->Html->css('bootstrap.min');
-	echo $this->Html->css('bootstrap-responsive.min');
 	echo $this->Html->css('main');
 	?>
 
