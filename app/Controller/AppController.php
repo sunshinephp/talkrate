@@ -45,7 +45,7 @@ class AppController extends Controller {
 				'controller' => 'users',
 				'action' => 'login',
 			),
-			'authError' => 'Authentication Error',
+			'authError' => 'Please log in',
 			'authenticate' => array(
 				'Form' => array(
 					'fields' => array('username' => 'email')
