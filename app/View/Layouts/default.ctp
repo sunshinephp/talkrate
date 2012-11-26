@@ -16,6 +16,7 @@
  * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
 
+$appName = 'Sunshine PHP Talks';
 ?>
 <html>
 <head>
@@ -51,10 +52,10 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</a>
-				<a class="brand" href="#">Project name</a>
+				<?php echo $this->Html->link($appName, '/', array('class' => 'brand')) ?>
 				<div class="nav-collapse collapse">
 					<ul class="nav">
-						<li class="active"><?php echo $this->Html->link('Home', '/'); ?></li>
+						<li class="active"><?php echo $this->Html->link('Talks', '/'); ?></li>
 						<li><a href="#about">About</a></li>
 						<li><a href="#contact">Contact</a></li>
 					</ul>
@@ -64,7 +65,7 @@
 	</div>
 	<div class="container">
 		<div id="header">
-			<h1>Sunshine PHP Talks</h1>
+			<h1><?php echo $appName ?></h1>
 			<p>Use this document as a way to quick start any new project.<br> All you get is this message and a barebones HTML document.</p>
 		</div>
 		<div id="content">
