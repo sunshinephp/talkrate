@@ -70,3 +70,26 @@
 		<li><?php echo $this->Html->link(__('New Talk Rating'), array('controller' => 'talk_ratings', 'action' => 'add')); ?> </li>
 	</ul>
 </div>
+<div class="rateit" data-rateit-value="2.25" data-rateit-ispreset="true" data-rateit-readonly="true"></div>
+<select id="backing2b">
+    <option value="0"></option>
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+    <option value="4">4</option>
+    <option value="5">5</option>
+</select>
+<div class="rateit" data-rateit-backingfld="#backing2b"></div>
+<?php echo $this->html->script('http://code.jquery.com/jquery-1.8.3.min.js') ?>
+<?php echo $this->html->script('/js/jquery.rateit/jquery.rateit.js') ?>
+<?php echo $this->html->css('/js/jquery.rateit/rateit.css') ?>
+<script>
+(function($) {
+	$(document).ready(function() {
+		var $el = $('.rateit').eq(1);
+		$el.on('rated', function(e, value) {
+			alert('rated at: ' + value);
+		});
+	});
+}(window.jQuery));
+</script>
