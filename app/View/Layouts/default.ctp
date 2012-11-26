@@ -69,7 +69,7 @@ $appName = 'Sunshine PHP Talks';
 		<div id="content">
 
 			<?php echo $this->Session->flash(); ?>
-			<?php echo $this->Session->flash('auth'); ?>
+			<?php echo $this->Session->flash('auth', array('params' => array('class' => 'alert alert-info'))); ?>
 
 			<?php echo $this->fetch('content'); ?>
 		</div>
