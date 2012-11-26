@@ -50,14 +50,27 @@ $appName = 'Sunshine PHP Talks';
 				<div class="nav-collapse collapse">
 					<ul class="nav">
 						<li><?php echo $this->Html->link('Talks', '/'); ?></li>
-						<li>
-							<?php
-							$actionText = $isLoggedIn ? 'Log Out' : 'Log In';
-							$action = $isLoggedIn ? 'logout' : 'login';
-							echo $this->Html->link($actionText, array('controller' => 'users', 'action' => $action));
-							?>
-						</li>
 					</ul>
+					<?php
+					if (!$isLoggedIn) {
+						?>
+						<ul class="nav pull-right">
+							<li>
+								<?php echo $this->Html->link('Log In', array('controller' => 'users', 'action' => 'login')); ?>
+							</li>
+						</ul>
+						<?php
+					} else {
+						?>
+						<ul class="nav pull-right">
+							<li>
+								<?php echo $this->Html->link('Log Out', array('controller' => 'users', 'action' => 'logout')); ?>
+							</li>
+						</ul>
+						<p class="navbar-text pull-right">Logged in as: <?php echo h($loggedInUser['email']); ?></p>
+						<?php
+					}
+					?>
 				</div><!--/.nav-collapse -->
 			</div>
 		</div>
