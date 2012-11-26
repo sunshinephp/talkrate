@@ -47,17 +47,16 @@ $appName = 'Sunshine PHP Talks';
 	<div class="navbar navbar-inverse navbar-fixed-top">
 		<div class="navbar-inner">
 			<div class="container">
-				<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-				</a>
-				<?php echo $this->Html->link($appName, '/', array('class' => 'brand')) ?>
 				<div class="nav-collapse collapse">
 					<ul class="nav">
-						<li class="active"><?php echo $this->Html->link('Talks', '/'); ?></li>
-						<li><a href="#about">About</a></li>
-						<li><a href="#contact">Contact</a></li>
+						<li><?php echo $this->Html->link('Talks', '/'); ?></li>
+						<li>
+							<?php
+							$actionText = $isLoggedIn ? 'Log Out' : 'Log In';
+							$action = $isLoggedIn ? 'logout' : 'login';
+							echo $this->Html->link($actionText, array('controller' => 'users', 'action' => $action));
+							?>
+						</li>
 					</ul>
 				</div><!--/.nav-collapse -->
 			</div>
@@ -66,11 +65,11 @@ $appName = 'Sunshine PHP Talks';
 	<div class="container">
 		<div id="header">
 			<h1><?php echo $appName ?></h1>
-			<p>Use this document as a way to quick start any new project.<br> All you get is this message and a barebones HTML document.</p>
 		</div>
 		<div id="content">
 
 			<?php echo $this->Session->flash(); ?>
+			<?php echo $this->Session->flash('auth'); ?>
 
 			<?php echo $this->fetch('content'); ?>
 		</div>
