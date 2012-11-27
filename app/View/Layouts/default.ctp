@@ -50,6 +50,16 @@ $appName = 'Sunshine PHP Talks';
 							<li><?php echo $this->Html->link('Talks', '/'); ?></li>
 						</ul>
 						<?php
+						if ($isAdmin) {
+							?>
+                            <ul class="nav pull-left">
+                                <li>
+									<?php echo $this->Html->link('Users', array('controller' => 'users', 'action' => 'index', 'admin' => true)); ?>
+                                </li>
+                            </ul>
+							<?php
+						}
+
 						if (!$isLoggedIn) {
 							?>
 							<ul class="nav pull-right">

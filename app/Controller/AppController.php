@@ -56,7 +56,9 @@ class AppController extends Controller {
 	);
 
 	public function beforeRender() {
-		$this->set('loggedInUser', $this->Auth->user());
+		$user = $this->Auth->user();
+		$this->set('loggedInUser', $user);
 		$this->set('isLoggedIn', $this->Auth->loggedIn());
+		$this->set('isAdmin', isset($user['is_admin']) && $user['is_admin'] == '1' ? true : false );
 	}
 }
