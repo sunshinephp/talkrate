@@ -78,9 +78,8 @@
     <option value="5">5</option>
 </select>
 <div class="rateit" data-rateit-backingfld="#backing2b"></div>
-<?php echo $this->html->script('http://code.jquery.com/jquery-1.8.3.min.js') ?>
-<?php echo $this->html->script('/js/jquery.rateit/jquery.rateit.js') ?>
-<?php echo $this->html->css('/js/jquery.rateit/rateit.css') ?>
+<?php $this->html->script('/js/jquery.rateit/jquery.rateit.js') ?>
+<?php $this->html->css('/js/jquery.rateit/rateit.css') ?>
 <script>
 (function($) {
 	$(document).ready(function() {
