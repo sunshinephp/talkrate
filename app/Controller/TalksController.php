@@ -6,9 +6,13 @@ App::uses('AppController', 'Controller');
  * @property Talk $Talk
  */
 class TalksController extends AppController {
+
 	public function beforeFilter() {
-		$this->Auth->allow(array('index', 'view'));
+		$this->Auth->allow(array(
+			'index', 'view'
+		));
 	}
+
 /**
  * index method
  *
