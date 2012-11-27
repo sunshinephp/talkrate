@@ -1,15 +1,6 @@
 <div class="talks index">
 	<h2><?php echo __('Talks'); ?></h2>
 
-	<div class="actions">
-		<h3><?php echo __('Actions'); ?></h3>
-		<ul>
-			<li><?php echo $this->Html->link(__('New Talk'), array('action' => 'add')); ?></li>
-			<li><?php echo $this->Html->link(__('List Talk Ratings'), array('controller' => 'talk_ratings', 'action' => 'index')); ?> </li>
-			<li><?php echo $this->Html->link(__('New Talk Rating'), array('controller' => 'talk_ratings', 'action' => 'add')); ?> </li>
-		</ul>
-	</div>
-
 	<table class="table table-striped table-bordered table-hover">
 		<tr>
 			<th><?php echo $this->Paginator->sort('name'); ?></th>
@@ -17,7 +8,7 @@
 			<th><?php echo $this->Paginator->sort('last_name'); ?></th>
 			<th><?php echo $this->Paginator->sort('talk_level'); ?></th>
 			<th><?php echo $this->Paginator->sort('talk_category'); ?></th>
-			<th>Rate</th>
+			<th><?php echo $this->Paginator->sort('rating'); ?></th>
 			<th class="actions"><?php echo __('Actions'); ?></th>
 		</tr>
 		<?php

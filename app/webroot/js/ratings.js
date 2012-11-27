@@ -11,6 +11,12 @@ window.SunshinePhp = window.SunshinePhp || {};
             if ($.fn.rateit === undefined) {
                 throw new Error('RateIt Plugin Not loaded');
             }
+
+            this.bindRatings();
+        },
+
+        bindRatings: function() {
+            $('.rating').rateit();
         }
     };
 }(window, window.jQuery, window.SunshinePhp));
