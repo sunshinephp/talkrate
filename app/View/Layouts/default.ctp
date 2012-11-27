@@ -54,7 +54,7 @@ $appName = 'Sunshine PHP Talks';
 							?>
 							<ul class="nav pull-right">
 								<li>
-									<?php echo $this->Html->link('Log In', array('controller' => 'users', 'action' => 'login')); ?>
+									<?php echo $this->Html->link('Log In', array('controller' => 'users', 'action' => 'login', 'admin' => false)); ?>
 								</li>
 							</ul>
 							<?php
@@ -62,7 +62,7 @@ $appName = 'Sunshine PHP Talks';
 							?>
 							<ul class="nav pull-right">
 								<li>
-									<?php echo $this->Html->link('Log Out', array('controller' => 'users', 'action' => 'logout')); ?>
+									<?php echo $this->Html->link('Log Out', array('controller' => 'users', 'action' => 'logout', 'admin' => false)); ?>
 								</li>
 							</ul>
 							<p class="navbar-text pull-right">Logged in as: <?php echo h($loggedInUser['email']); ?></p>
