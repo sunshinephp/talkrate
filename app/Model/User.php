@@ -45,6 +45,14 @@ class User extends AppModel {
 			),
 		),
 		'email' => array(
+			'unique' => array(
+				'rule' => array('isUnique'),
+				'message' => 'Email address is already in use',
+				//'allowEmpty' => false,
+				//'required' => false,
+				//'last' => false, // Stop validation after this rule
+				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+			),
 			'email' => array(
 				'rule' => array('email'),
 				'message' => 'Please enter a valid email address',
