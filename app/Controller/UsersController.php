@@ -45,8 +45,19 @@ class UsersController extends AppController {
 		if ($this->data) {
 			$saved = $this->User->save($this->data);
 
-			if ($saved && $this->Auth->login()) {
-				return $this->redirect($this->Auth->redirect());
+			if ($saved) {
+				App::uses('CakeEmail', 'Network/Email');
+				$email = new CakeEmail();
+				$email->from(array('talks@sunshinephp.com' => 'Talks Site'))
+					->to('adamculp@uws.net')
+					->cc('jblotus@gmail.com')
+					->subject('A new user has registered')
+				    ->template('new_registration')
+				    ->viewVars(array('user' => $this->data['User']))
+					->send('');
+
+				$this->Session->setFlash('Your registration has been recieved.');
+				return $this->redirect('/');
 			}
 		}
 	}
