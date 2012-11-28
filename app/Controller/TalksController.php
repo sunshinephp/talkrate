@@ -7,12 +7,6 @@ App::uses('AppController', 'Controller');
  */
 class TalksController extends AppController {
 
-	public function beforeFilter() {
-		$this->Auth->allow(array(
-			'index', 'view'
-		));
-	}
-
 /**
  * index method
  *
@@ -21,6 +15,23 @@ class TalksController extends AppController {
 	public function index() {
 		$this->Talk->recursive = 0;
 		$this->set('talks', $this->paginate());
+	}
+
+	/**
+	 * add method
+	 *
+	 * @return void
+	 */
+	public function add() {
+		if ($this->request->is('post')) {
+			$this->Talk->create();
+			if ($this->Talk->save($this->request->data)) {
+				$this->Session->setFlash(__('The talk has been saved'));
+				$this->redirect(array('action' => 'index'));
+			} else {
+				$this->Session->setFlash(__('The talk could not be saved. Please, try again.'));
+			}
+		}
 	}
 
 /**
@@ -109,23 +120,6 @@ class TalksController extends AppController {
 			throw new NotFoundException(__('Invalid talk'));
 		}
 		$this->set('talk', $this->Talk->read(null, $id));
-	}
-
-/**
- * admin_add method
- *
- * @return void
- */
-	public function admin_add() {
-		if ($this->request->is('post')) {
-			$this->Talk->create();
-			if ($this->Talk->save($this->request->data)) {
-				$this->Session->setFlash(__('The talk has been saved'));
-				$this->redirect(array('action' => 'index', 'admin' => false));
-			} else {
-				$this->Session->setFlash(__('The talk could not be saved. Please, try again.'));
-			}
-		}
 	}
 
 /**

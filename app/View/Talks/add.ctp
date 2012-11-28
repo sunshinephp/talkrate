@@ -1,7 +1,7 @@
 <div class="talks form">
 <?php echo $this->Form->create('Talk'); ?>
 	<fieldset>
-		<legend><?php echo __('Add Talk'); ?></legend>
+		<legend><?php echo __('Admin Add Talk'); ?></legend>
 	<?php
 		echo $this->Form->input('name');
 		echo $this->Form->input('first_name');

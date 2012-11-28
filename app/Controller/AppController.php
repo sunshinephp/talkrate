@@ -45,7 +45,8 @@ class AppController extends Controller {
 				'controller' => 'users',
 				'action' => 'login',
 			),
-			'authError' => 'Please log in',
+			'authorize' => 'Controller',
+			'authError' => 'Not authorized',
 			'authenticate' => array(
 				'Form' => array(
 					'fields' => array('username' => 'email')
@@ -54,6 +55,20 @@ class AppController extends Controller {
 		),
 		'Session'
 	);
+
+	public function beforeFilter() {
+		parent::beforeFilter();
+
+		$this->Auth->allow(array(
+			'index', 'view'
+		));
+
+
+	}
+
+	public function isAuthorized() {
+		return (boolean) $this->Auth->user('is_admin');
+	}
 
 	public function beforeRender() {
 		$user = $this->Auth->user();
