@@ -42,7 +42,13 @@ class UsersController extends AppController {
 	}
 
 	public function register() {
-		$saved = $this->User->save($this->data);
+		if ($this->data) {
+			$saved = $this->User->save($this->data);
+
+			if ($saved && $this->Auth->login()) {
+				return $this->redirect($this->Auth->redirect());
+			}
+		}
 	}
 
 /**
