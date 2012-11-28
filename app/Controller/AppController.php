@@ -49,7 +49,8 @@ class AppController extends Controller {
 			'authError' => 'Not authorized',
 			'authenticate' => array(
 				'Form' => array(
-					'fields' => array('username' => 'email')
+					'fields' => array('username' => 'email'),
+					'scope' => array('User.is_approved' => 1)
 				)
 			)
 		),
