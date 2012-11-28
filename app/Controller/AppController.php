@@ -57,18 +57,24 @@ class AppController extends Controller {
 		'Session'
 	);
 
+	protected $registeredUserActions = array('index', 'view');
+
 	public function beforeFilter() {
 		parent::beforeFilter();
-
-		$this->Auth->allow(array(
-			'index', 'view'
-		));
-
-
 	}
 
 	public function isAuthorized() {
-		return (boolean) $this->Auth->user('is_admin');
+		$is_admin = (boolean) $this->Auth->user('is_admin');
+
+		if ($is_admin) {
+			return true;
+		}
+
+		if (in_array($this->request->params['action'], $this->registeredUserActions)) {
+			return true;
+		}
+
+		return false;
 	}
 
 	public function beforeRender() {
