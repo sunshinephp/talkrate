@@ -47,6 +47,7 @@ class AppSchema extends CakeSchema {
 		'last_name' => array('type' => 'string', 'null' => false, 'default' => null, 'collate' => 'latin1_swedish_ci', 'charset' => 'latin1'),
 		'email' => array('type' => 'string', 'null' => false, 'default' => null, 'key' => 'unique', 'collate' => 'latin1_swedish_ci', 'charset' => 'latin1'),
 		'password' => array('type' => 'string', 'null' => false, 'default' => '0', 'collate' => 'latin1_swedish_ci', 'charset' => 'latin1'),
+		'is_approved' => array('type' => 'boolean', 'null' => false, 'default' => '0'),
 		'is_admin' => array('type' => 'boolean', 'null' => false, 'default' => null),
 		'created' => array('type' => 'datetime', 'null' => true, 'default' => null),
 		'modified' => array('type' => 'datetime', 'null' => true, 'default' => null),
