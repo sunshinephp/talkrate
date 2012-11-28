@@ -39,23 +39,6 @@ class TalksController extends AppController {
 	}
 
 /**
- * add method
- *
- * @return void
- */
-	public function add() {
-		if ($this->request->is('post')) {
-			$this->Talk->create();
-			if ($this->Talk->save($this->request->data)) {
-				$this->Session->setFlash(__('The talk has been saved'));
-				$this->redirect(array('action' => 'index'));
-			} else {
-				$this->Session->setFlash(__('The talk could not be saved. Please, try again.'));
-			}
-		}
-	}
-
-/**
  * edit method
  *
  * @throws NotFoundException
@@ -138,7 +121,7 @@ class TalksController extends AppController {
 			$this->Talk->create();
 			if ($this->Talk->save($this->request->data)) {
 				$this->Session->setFlash(__('The talk has been saved'));
-				$this->redirect(array('action' => 'index'));
+				$this->redirect(array('action' => 'index', 'admin' => false));
 			} else {
 				$this->Session->setFlash(__('The talk could not be saved. Please, try again.'));
 			}
