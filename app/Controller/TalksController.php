@@ -7,9 +7,7 @@ App::uses('AppController', 'Controller');
  */
 class TalksController extends AppController {
 
-	public function beforeFilter() {
-		parent::beforeFilter();
-	}
+	public $components = array('Paginator');
 /**
  * index method
  *
@@ -17,7 +15,24 @@ class TalksController extends AppController {
  */
 	public function index() {
 		$this->Talk->recursive = 0;
-		$this->set('talks', $this->paginate());
+		$this->Paginator->settings = array(
+			'Talk' => array(
+				'fields' => array('Talk.*', 'TalkRating.rating'),
+				'joins' => array(
+					array(
+						'table' => 'talk_ratings',
+						'alias' => 'TalkRating',
+						'type' => 'LEFT',
+						'conditions' => array('TalkRating.talk_id = Talk.id', 'TalkRating.user_id' => $this->Auth->user('id')
+						)
+					)
+				)
+			)
+
+		);
+		$talks = $this->Paginator->paginate();
+
+		$this->set('talks', $talks);
 	}
 
 	/**

@@ -12,12 +12,12 @@ if ($isAdmin) {
 
 <table class="table table-striped table-bordered table-hover">
 	<tr>
-		<th><?php echo $this->Paginator->sort('name'); ?></th>
-		<th><?php echo $this->Paginator->sort('first_name'); ?></th>
-		<th><?php echo $this->Paginator->sort('last_name'); ?></th>
-		<th><?php echo $this->Paginator->sort('talk_level'); ?></th>
-		<th><?php echo $this->Paginator->sort('talk_category'); ?></th>
-		<th><?php echo $this->Paginator->sort('rating', 'Your Rating'); ?></th>
+		<th><?php echo $this->Paginator->sort('Talk.name', 'Name'); ?></th>
+		<th><?php echo $this->Paginator->sort('Talk.first_name', 'First Name'); ?></th>
+		<th><?php echo $this->Paginator->sort('Talk.last_name', 'Last Name'); ?></th>
+		<th><?php echo $this->Paginator->sort('Talk.talk_level', 'Level'); ?></th>
+		<th><?php echo $this->Paginator->sort('Talk.talk_category', 'Category'); ?></th>
+		<th><?php echo $this->Paginator->sort('TalkRating.rating', 'Your Rating'); ?></th>
 		<th class="actions"><?php echo __('Actions'); ?></th>
 	</tr>
 	<?php
@@ -33,8 +33,8 @@ if ($isAdmin) {
 				$user_rating = isset($talk['Talk']['user_rating']) ? (integer) $talk['Talk']['user_rating'] : 0;
 				?>
 				<div class="rating"
-					 data-rating="<?php echo $user_rating ?>"
-					 data-rateit-value="<?php echo $user_rating ?>"
+					 data-rating="<?php echo $talk['TalkRating']['rating'] ?>"
+					 data-rateit-value="<?php echo $talk['TalkRating']['rating'] ?>"
 					 data-talk-id="<?php echo $talk['Talk']['id'] ?>"></div>
 			</td>
 			<td class="actions">
