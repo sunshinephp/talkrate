@@ -17,7 +17,7 @@ if ($isAdmin) {
 		<th><?php echo $this->Paginator->sort('last_name'); ?></th>
 		<th><?php echo $this->Paginator->sort('talk_level'); ?></th>
 		<th><?php echo $this->Paginator->sort('talk_category'); ?></th>
-		<th><?php echo $this->Paginator->sort('rating'); ?></th>
+		<th><?php echo $this->Paginator->sort('rating', 'Your Rating'); ?></th>
 		<th class="actions"><?php echo __('Actions'); ?></th>
 	</tr>
 	<?php
