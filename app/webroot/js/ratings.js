@@ -16,7 +16,7 @@ window.SunshinePhp = window.SunshinePhp || {};
         },
 
         bindRatings: function() {
-            $('.rating').rateit();
+            $('.rating').rateit({ step: 1 });
         }
     };
 }(window, window.jQuery, window.SunshinePhp));
