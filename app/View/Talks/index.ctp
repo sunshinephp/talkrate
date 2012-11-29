@@ -41,7 +41,6 @@ if ($isAdmin) {
 					echo ' ' . $this->Html->link(__('Edit'), array('action' => 'edit', $talk['Talk']['id']), array('class' => 'btn'));
 					echo ' ' . $this->Form->postLink(__('Delete'), array('action' => 'delete', $talk['Talk']['id']), array('class' => array('btn', 'btn-danger')), 'Are you sure you want to delete this talk?');
 				}
-
 				?>
 			</td>
 		</tr>
