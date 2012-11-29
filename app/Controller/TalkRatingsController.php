@@ -85,33 +85,6 @@ class TalkRatingsController extends AppController {
 	}
 
 /**
- * edit method
- *
- * @throws NotFoundException
- * @param string $id
- * @return void
- */
-	public function edit($id = null) {
-		$this->TalkRating->id = $id;
-		if (!$this->TalkRating->exists()) {
-			throw new NotFoundException(__('Invalid talk rating'));
-		}
-		if ($this->request->is('post') || $this->request->is('put')) {
-			if ($this->TalkRating->save($this->request->data)) {
-				$this->Session->setFlash(__('The talk rating has been saved'));
-				$this->redirect(array('action' => 'index'));
-			} else {
-				$this->Session->setFlash(__('The talk rating could not be saved. Please, try again.'));
-			}
-		} else {
-			$this->request->data = $this->TalkRating->read(null, $id);
-		}
-		$users = $this->TalkRating->User->find('list');
-		$talks = $this->TalkRating->Talk->find('list');
-		$this->set(compact('users', 'talks'));
-	}
-
-/**
  * delete method
  *
  * @throws MethodNotAllowedException
