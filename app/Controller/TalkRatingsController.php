@@ -40,11 +40,12 @@ class TalkRatingsController extends AppController {
 		$this->set('talkRating', $this->TalkRating->read(null, $id));
 	}
 
-/**
- * add method
- *
- * @return void
- */
+	/**
+	 * add method
+	 *
+	 * @throws Exception
+	 * @return void
+	 */
 	public function add() {
 		$results = array('success' => false, 'error' => '', 'msg' => '');
 
