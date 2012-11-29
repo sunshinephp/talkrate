@@ -43,7 +43,8 @@ class TalkRatingsController extends AppController {
 	/**
 	 * add method
 	 *
-	 * @throws Exception
+	 * @throws MethodNotAllowedException
+	 * @throws InternalErrorException
 	 * @return void
 	 */
 	public function add() {
@@ -51,7 +52,7 @@ class TalkRatingsController extends AppController {
 
 		try {
 			if (!$this->request->is('post')) {
-				throw new Exception('No data supplied');
+				throw new MethodNotAllowedException('No data supplied');
 			}
 			$userId = $this->Auth->user('id');
 
@@ -73,7 +74,7 @@ class TalkRatingsController extends AppController {
 
 			$saved = $this->TalkRating->save();
 			if (!$saved) {
-				throw new Exception('The talk rating could not be saved. Please, try again.');
+				throw new InternalErrorException('The talk rating could not be saved. Please, try again.');
 			}
 			$results['msg'] = 'The talk rating has been saved';
 			$results['success'] = true;
