@@ -27,7 +27,7 @@ window.SunshinePhp = window.SunshinePhp || {};
                     oldValue = $rating.data('rating'),
                     talkId = $rating.data('talkId'),
                     promise;
-                promise = $.post('/talk_ratings/save', { talkId: talkId, rating: newRating });
+                promise = $.post('/talk_ratings/add.json', { talk_id: talkId, rating: newRating });
                 promise.fail(function() {
                     resetRating($rating, oldValue);
                 });
@@ -37,7 +37,7 @@ window.SunshinePhp = window.SunshinePhp || {};
                     oldValue = $rating.data('rating'),
                     talkId = $rating.data('talkId'),
                     promise;
-                promise = $.post('/talk_ratings/reset', { talkId: talkId });
+                promise = $.post('/talk_ratings/delete.json', { talk_id: talkId });
                 promise.fail(function() {
                     resetRating($rating);
                 });

@@ -9,13 +9,6 @@ App::uses('AppController', 'Controller');
 class TalkRatingsController extends AppController {
 
 /**
- * Helpers
- *
- * @var array
- */
-	public $helpers = array('Ajax', 'Javascript');
-
-/**
  * Components
  *
  * @var array
@@ -54,17 +47,34 @@ class TalkRatingsController extends AppController {
  */
 	public function add() {
 		if ($this->request->is('post')) {
-			$this->TalkRating->create();
-			if ($this->TalkRating->save($this->request->data)) {
+
+			$userId = $this->Auth->user('id');
+
+			$exists = $this->TalkRating->find('first', array(
+				'conditions' => array(
+					'user_id' => $userId,
+					'talk_id' => $this->request->data['talk_id']
+				)
+			));
+
+			if (!$exists) {
+				$this->TalkRating->create($this->request->data);
+			} else {
+				$this->TalkRating->set($exists);
+			}
+
+			$this->TalkRating->set('user_id', $userId);
+			$this->TalkRating->set('rating', $this->request->data['rating']);
+
+			if ($this->TalkRating->save()) {
 				$this->Session->setFlash(__('The talk rating has been saved'));
 				$this->redirect(array('action' => 'index'));
 			} else {
 				$this->Session->setFlash(__('The talk rating could not be saved. Please, try again.'));
 			}
+
+			$this->set('_serialize', array('success' => true));
 		}
-		$users = $this->TalkRating->User->find('list');
-		$talks = $this->TalkRating->Talk->find('list');
-		$this->set(compact('users', 'talks'));
 	}
 
 /**

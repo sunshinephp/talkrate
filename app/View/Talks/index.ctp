@@ -31,7 +31,6 @@ if ($isAdmin) {
 			<td>
 				<?php
 				$user_rating = isset($talk['Talk']['user_rating']) ? (integer) $talk['Talk']['user_rating'] : 0;
-				$user_rating = 4;
 				?>
 				<div class="rating"
 					 data-rating="<?php echo $user_rating ?>"
