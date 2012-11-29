@@ -32,9 +32,9 @@ if ($isAdmin) {
 				<div class="rating"></div>
 			</td>
 			<td class="actions">
-				<?php echo $this->Html->link(__('View'), array('action' => 'view', $talk['Talk']['id'])); ?>
-				<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $talk['Talk']['id'])); ?>
-				<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $talk['Talk']['id']), null, __('Are you sure you want to delete # %s?', $talk['Talk']['id'])); ?>
+				<?php echo $this->Html->link(__('View'), array('action' => 'view', $talk['Talk']['id']), array('class' => 'btn')); ?>
+				<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $talk['Talk']['id']), array('class' => 'btn')); ?>
+				<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $talk['Talk']['id']), array('class' => array('btn', 'btn-danger')), __('Are you sure you want to delete # %s?', $talk['Talk']['id'])); ?>
 			</td>
 		</tr>
 		<?php endforeach; ?>
