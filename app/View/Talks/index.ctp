@@ -29,7 +29,14 @@ if ($isAdmin) {
 			<td><?php echo h($talk['Talk']['talk_level']); ?>&nbsp;</td>
 			<td><?php echo h($talk['Talk']['talk_category']); ?>&nbsp;</td>
 			<td>
-				<div class="rating"></div>
+				<?php
+				$user_rating = isset($talk['Talk']['user_rating']) ? (integer) $talk['Talk']['user_rating'] : 0;
+				$user_rating = 4;
+				?>
+				<div class="rating"
+					 data-rating="<?php echo $user_rating ?>"
+					 data-rateit-value="<?php echo $user_rating ?>"
+					 data-talk-id="<?php echo $talk['Talk']['id'] ?>"></div>
 			</td>
 			<td class="actions">
 				<?php
