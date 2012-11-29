@@ -46,8 +46,12 @@ class TalkRatingsController extends AppController {
  * @return void
  */
 	public function add() {
-		if ($this->request->is('post')) {
+		$results = array('success' => false, 'error' => '', 'msg' => '');
 
+		try {
+			if (!$this->request->is('post')) {
+				throw new Exception('No data supplied');
+			}
 			$userId = $this->Auth->user('id');
 
 			$exists = $this->TalkRating->find('first', array(
@@ -66,15 +70,18 @@ class TalkRatingsController extends AppController {
 			$this->TalkRating->set('user_id', $userId);
 			$this->TalkRating->set('rating', $this->request->data['rating']);
 
-			if ($this->TalkRating->save()) {
-				$this->Session->setFlash(__('The talk rating has been saved'));
-				$this->redirect(array('action' => 'index'));
-			} else {
-				$this->Session->setFlash(__('The talk rating could not be saved. Please, try again.'));
+			$saved = $this->TalkRating->save();
+			if (!$saved) {
+				throw new Exception('The talk rating could not be saved. Please, try again.');
 			}
+			$results['msg'] = 'The talk rating has been saved';
+			$results['success'] = true;
 
-			$this->set('_serialize', array('success' => true));
+		} catch (Exception $ex) {
+			$results['error'] = $ex->getMessage();
 		}
+
+		return new CakeResponse(array('type' => 'json', 'body' => json_encode($results)));
 	}
 
 /**
