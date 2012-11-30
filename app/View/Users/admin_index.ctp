@@ -8,6 +8,8 @@
 		<th><?php echo $this->Paginator->sort('first_name'); ?></th>
 		<th><?php echo $this->Paginator->sort('last_name'); ?></th>
 		<th><?php echo $this->Paginator->sort('email'); ?></th>
+		<th><?php echo $this->Paginator->sort('is_approved'); ?></th>
+		<th><?php echo $this->Paginator->sort('is_admin'); ?></th>
 		<th class="actions"><?php echo __('Actions'); ?></th>
 </tr>
 <?php
@@ -17,6 +19,8 @@ foreach ($users as $user): ?>
 	<td><?php echo h($user['User']['first_name']); ?>&nbsp;</td>
 	<td><?php echo h($user['User']['last_name']); ?>&nbsp;</td>
 	<td><?php echo h($user['User']['email']); ?>&nbsp;</td>
+	<td><?php echo h($user['User']['is_approved'] ? 'yes' : 'no'); ?>&nbsp;</td>
+	<td><?php echo h($user['User']['is_admin'] ? 'yes' : 'no'); ?>&nbsp;</td>
 	<td class="actions">
 		<?php echo $this->Html->link(__('Details'), array('action' => 'view', $user['User']['id']), array('class' => 'btn')); ?>
 		<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $user['User']['id']), array('class' => 'btn')); ?>
