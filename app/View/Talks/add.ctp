@@ -1,5 +1,13 @@
 <div class="talks form">
-<?php echo $this->Form->create('Talk'); ?>
+<?php
+	echo $this->Form->create('Talk', array(
+		'class' => 'span12',
+		'inputDefaults' => array(
+			'div' => array('class' => 'control-group'),
+			'error' => array('attributes' => array('wrap' => 'label', 'class' => 'help-inline'))
+		)
+	));
+	?>
 	<fieldset>
 		<legend><?php echo __('Admin Add Talk'); ?></legend>
 	<?php
