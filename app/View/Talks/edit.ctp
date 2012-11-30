@@ -1,5 +1,13 @@
 <div class="talks form">
-<?php echo $this->Form->create('Talk'); ?>
+	<?php
+	echo $this->Form->create('Talk', array(
+	'class' => 'span12',
+	'inputDefaults' => array(
+		'div' => array('class' => 'control-group'),
+		'error' => array('attributes' => array('wrap' => 'label', 'class' => 'help-inline'))
+	)
+	));
+	?>
 	<fieldset>
 		<legend><?php echo __('Edit Talk'); ?></legend>
 	<?php
@@ -20,14 +28,4 @@
 	?>
 	</fieldset>
 <?php echo $this->Form->end(__('Submit')); ?>
-</div>
-<div class="actions">
-	<h3><?php echo __('Actions'); ?></h3>
-	<ul>
-
-		<li><?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $this->Form->value('Talk.id')), null, __('Are you sure you want to delete # %s?', $this->Form->value('Talk.id'))); ?></li>
-		<li><?php echo $this->Html->link(__('List Talks'), array('action' => 'index')); ?></li>
-		<li><?php echo $this->Html->link(__('List Talk Ratings'), array('controller' => 'talk_ratings', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Talk Rating'), array('controller' => 'talk_ratings', 'action' => 'add')); ?> </li>
-	</ul>
 </div>

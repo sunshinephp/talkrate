@@ -47,7 +47,7 @@ class TalksController extends AppController {
 				$this->Session->setFlash(__('The talk has been saved'));
 				$this->redirect(array('action' => 'index'));
 			} else {
-				$this->Session->setFlash(__('The talk could not be saved. Please, try again.'));
+				$this->Session->setFlash(__('The talk could not be saved. Please, correct the errors below and try again.'));
 			}
 		}
 	}
@@ -84,7 +84,7 @@ class TalksController extends AppController {
 				$this->Session->setFlash(__('The talk has been saved'));
 				$this->redirect(array('action' => 'index'));
 			} else {
-				$this->Session->setFlash(__('The talk could not be saved. Please, try again.'));
+				$this->Session->setFlash(__('The talk could not be saved. Please correct the errors below and try again.'));
 			}
 		} else {
 			$this->request->data = $this->Talk->read(null, $id);
