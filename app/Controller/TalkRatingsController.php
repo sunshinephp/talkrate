@@ -40,13 +40,13 @@ class TalkRatingsController extends AppController {
 		$this->set('talkRating', $this->TalkRating->read(null, $id));
 	}
 
-	/**
-	 * add method
-	 *
-	 * @throws MethodNotAllowedException
-	 * @throws InternalErrorException
-	 * @return void
-	 */
+/**
+ * add method
+ *
+ * @throws MethodNotAllowedException
+ * @throws InternalErrorException
+ * @return void
+ */
 	public function add() {
 		$results = array('success' => false, 'error' => '', 'msg' => '');
 
@@ -95,19 +95,33 @@ class TalkRatingsController extends AppController {
  * @return void
  */
 	public function delete($id = null) {
-		if (!$this->request->is('post')) {
-			throw new MethodNotAllowedException();
+		$results = array('success' => false, 'error' => '', 'msg' => '');
+
+		try {
+			if (!$this->request->is('post')) {
+				throw new MethodNotAllowedException('No data supplied');
+			}
+			$userId = $this->Auth->user('id');
+
+			$exists = $this->TalkRating->find('first', array(
+				'conditions' => array(
+					'user_id' => $userId,
+					'talk_id' => $this->request->data['talk_id']
+				)
+			));
+
+			$deleted = $this->TalkRating->delete($exists['TalkRating']['id']);
+			if (!$deleted) {
+				throw new InternalErrorException('The talk rating could not be deleted. Please, try again.');
+			}
+			$results['msg'] = 'The talk rating has been deleted';
+			$results['success'] = true;
+
+		} catch (Exception $ex) {
+			$results['error'] = $ex->getMessage();
 		}
-		$this->TalkRating->id = $id;
-		if (!$this->TalkRating->exists()) {
-			throw new NotFoundException(__('Invalid talk rating'));
-		}
-		if ($this->TalkRating->delete()) {
-			$this->Session->setFlash(__('Talk rating deleted'));
-			$this->redirect(array('action' => 'index'));
-		}
-		$this->Session->setFlash(__('Talk rating was not deleted'));
-		$this->redirect(array('action' => 'index'));
+
+		return new CakeResponse(array('type' => 'json', 'body' => json_encode($results)));
 	}
 
 /**
