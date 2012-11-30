@@ -5,6 +5,7 @@ if ($isAdmin) {
 	?>
 	<section class="tools">
 		<?php echo $this->Html->link('Add Talk', array('controller' => 'talks', 'action' => 'add'), array('class' => array('btn', 'btn-primary'))); ?>
+		<?php echo $this->Html->link('Upload Talks', array('controller' => 'talks', 'action' => 'upload'), array('class' => array('btn'))); ?>
 	</section>
 	<?php
 }

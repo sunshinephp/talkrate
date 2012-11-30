@@ -125,6 +125,19 @@ class TalksController extends AppController {
 		$this->set('talks', $this->paginate());
 	}
 
+	public function upload() {
+
+		if ($this->request->is('post')) {
+			$file = $this->request->data['Talk']['csv'];
+			CakePlugin::load('CakeDC_Utils');
+			$this->Talk->Behaviors->load('CakeDC_Utils.CSVImport');
+
+			$this->Talk->importCSV($file['tmp_name']);
+			$errors = $this->Talk->getImportErrors();
+			var_dump($errors);
+		}
+	}
+
 /**
  * admin_view method
  *
