@@ -1,0 +1,3 @@
+[submodule "app/Plugin/CakeDC/utils"]
+	path = app/Plugin/CakeDC/utils
+	url = https://github.com/CakeDC/utils.git
