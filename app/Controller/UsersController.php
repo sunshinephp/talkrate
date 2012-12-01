@@ -57,7 +57,7 @@ class UsersController extends AppController {
 					->send('');
 
 				$this->Session->setFlash('Your registration has been recieved.');
-				return $this->redirect('/');
+				return $this->redirect('/users/login');
 			}
 		}
 	}
