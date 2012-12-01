@@ -55,4 +55,4 @@ if ($isAdmin) {
 </table>
 
 <?php
-echo $this->element('talks/rating_javascript');
+echo $this->element('Talks/rating_javascript');
