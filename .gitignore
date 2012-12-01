@@ -1,4 +1,6 @@
 .idea/
-app/config/database.php
+app/Config/database.php
 app/tmp/*
+lib/Cake/Console/cake
+lib/Cake/Console/cake.php
 lib/Cake/Console/Templates/skel/tmp/*
