@@ -32,7 +32,8 @@
  * In production mode, flash messages redirect after a time interval.
  * In development mode, you need to click the flash message to continue.
  */
-	Configure::write('debug', 2);
+	$is_production = !empty($_SERVER['HTTP_HOST']) && $_SERVER['HTTP_HOST'] === 'talks.sunshinephp.com' ? true : false; 
+	Configure::write('debug', $is_production ? 0 : 2);
 
 /**
  * Configure the Error handler used to handle errors for your application.  By default
