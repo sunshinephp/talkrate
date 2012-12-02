@@ -126,15 +126,15 @@ class TalksController extends AppController {
 	}
 
 	public function upload() {
-
 		if ($this->request->is('post')) {
-			$file = $this->request->data['Talk']['csv'];
-			CakePlugin::load('CakeDC_Utils');
-			$this->Talk->Behaviors->load('CakeDC_Utils.CSVImport');
 
-			$this->Talk->importCSV($file['tmp_name']);
-			$errors = $this->Talk->getImportErrors();
-			var_dump($errors);
+			try {
+				$this->Talk->saveCsv($this->request->data['Talk']['csv']['tmp_name']);
+				$this->Session->setFlash('Talks imported successfully');
+				return $this->redirect('/');
+			} catch (Exception $ex) {
+				$this->Session->setFlash('Errors encountered importing talks: ' . $ex->getMessage());
+			}
 		}
 	}
 

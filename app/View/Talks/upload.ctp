@@ -11,6 +11,12 @@
 	?>
     <fieldset>
         <legend><?php echo __('Upload Talks'); ?></legend>
+        <p>
+			Csv should have no headers and follow the following column format: <br />
+			first name, last name, email, bio, location, talk level, talk category, talk title, abstract, most desired (blank if not), slides url, other info
+			<br />
+			Please set encoding to UTF 8 w/o BOM and double quote all text fields
+        </p>
 		<?php
 		echo $this->Form->input('csv', array('type' => 'file', 'label' => 'Upload a CSV'));
 		?>
