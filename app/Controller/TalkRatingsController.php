@@ -8,13 +8,13 @@ App::uses('AppController', 'Controller');
  */
 class TalkRatingsController extends AppController {
 
+	protected $_registeredUserActions = array('add', 'delete');
 /**
  * Components
  *
  * @var array
  */
 	public $components = array('RequestHandler');
-
 /**
  * index method
  *
