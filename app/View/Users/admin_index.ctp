@@ -22,7 +22,7 @@ foreach ($users as $user): ?>
 	<td><?php echo h($user['User']['is_approved'] ? 'yes' : 'no'); ?>&nbsp;</td>
 	<td><?php echo h($user['User']['is_admin'] ? 'yes' : 'no'); ?>&nbsp;</td>
 	<td class="actions">
-		<?php echo $this->Html->link(__('Details'), array('action' => 'view', $user['User']['id']), array('class' => 'btn')); ?>
+		<?php echo $this->Html->link(__('View Details'), array('action' => 'view', $user['User']['id']), array('class' => 'btn')); ?>
 		<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $user['User']['id']), array('class' => 'btn')); ?>
 		<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $user['User']['id']), array('class' => array('btn', 'btn-danger')), __('Are you sure you want to delete # %s?', $user['User']['id'])); ?>
 	</td>

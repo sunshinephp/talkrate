@@ -40,7 +40,7 @@ if ($isAdmin) {
 			</td>
 			<td class="actions">
 				<?php
-				echo $this->Html->link(__('Details'), array('action' => 'view', $talk['Talk']['id']), array('class' => 'btn'));
+				echo $this->Html->link(__('View Details'), array('action' => 'view', $talk['Talk']['id']), array('class' => 'btn'));
 				?>
 
 				<?php

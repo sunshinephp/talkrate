@@ -46,6 +46,7 @@ $appName = 'Sunshine PHP Talks';
 			<div class="navbar-inner">
 				<div class="container">
 					<div class="nav-collapse collapse">
+						<?php echo $this->Html->link($appName, '/', array('class' => 'brand')); ?>
 						<ul class="nav">
 							<li><?php echo $this->Html->link('Talks', '/'); ?></li>
 						</ul>
@@ -84,9 +85,6 @@ $appName = 'Sunshine PHP Talks';
 			</div>
 		</div>
 		<div class="container">
-			<div id="header">
-				<h1><?php echo $appName ?></h1>
-			</div>
 			<div id="content">
 
 				<?php echo $this->Session->flash('flash', array('params' => array('class' => 'alert alert-info'))); ?>

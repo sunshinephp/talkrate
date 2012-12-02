@@ -1,5 +1,4 @@
-<div class="talks view">
-<h2><?php  echo __('Talk'); ?></h2>
+<h2><?php echo h($talk['Talk']['name']); ?></h2>
 	<dl>
 		<dt><?php echo __('Id'); ?></dt>
 		<dd>
@@ -82,16 +81,12 @@
 			&nbsp;
 		</dd>
 	</dl>
-</div>
+
 <div class="actions">
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
 		<li><?php echo $this->Html->link(__('Edit Talk'), array('action' => 'edit', $talk['Talk']['id'])); ?> </li>
 		<li><?php echo $this->Form->postLink(__('Delete Talk'), array('action' => 'delete', $talk['Talk']['id']), null, __('Are you sure you want to delete # %s?', $talk['Talk']['id'])); ?> </li>
-		<li><?php echo $this->Html->link(__('List Talks'), array('action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Talk'), array('action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Talk Ratings'), array('controller' => 'talk_ratings', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Talk Rating'), array('controller' => 'talk_ratings', 'action' => 'add')); ?> </li>
 	</ul>
 </div>
 <div class="related">
@@ -123,9 +118,4 @@
 	</table>
 <?php endif; ?>
 
-	<div class="actions">
-		<ul>
-			<li><?php echo $this->Html->link(__('New Talk Rating'), array('controller' => 'talk_ratings', 'action' => 'add')); ?> </li>
-		</ul>
-	</div>
 </div>
