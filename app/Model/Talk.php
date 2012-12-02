@@ -21,18 +21,18 @@ class Talk extends AppModel {
  */
 	public $validate = array(
 		'name' => array(
-			'notEmpty' => array(
+			'notempty' => array(
 				'rule' => array('notEmpty'),
-				'message' => 'Please enter a valid name for the talk',
+				'message' => 'Please enter a name for the talk',
 				//'required' => false,
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 		),
 		'first_name' => array(
-			'alphanumeric' => array(
-				'rule' => array('alphanumeric'),
-				'message' => 'Please enter a valid first name for the presenter',
+			'notempty' => array(
+				'rule' => array('notEmpty'),
+				'message' => 'Please enter a first name for the presenter',
 				'allowEmpty' => false,
 				//'required' => false,
 				//'last' => false, // Stop validation after this rule
@@ -41,8 +41,8 @@ class Talk extends AppModel {
 		),
 
 		'last_name' => array(
-			'alphanumeric' => array(
-				'rule' => array('alphanumeric'),
+			'notempty' => array(
+				'rule' => array('notEmpty'),
 				'message' => 'Please enter a valid last name for the presenter',
 				'allowEmpty' => false,
 				//'required' => false,
@@ -142,9 +142,6 @@ class Talk extends AppModel {
 			if (($handle = fopen($fileName, "r")) !== FALSE) {
 				$i = 0;
 				while (($row = fgetcsv($handle, 1000, ",")) !== FALSE) {
-					$row = array_map(function($n) {
-						return stripslashes($n);
-					}, $row);
 					$this->create(array(
 							'first_name' => $row[0],
 							'last_name' => $row[1],
@@ -158,12 +155,14 @@ class Talk extends AppModel {
 							'is_most_desired' => (boolean) $row[9],
 							'other_info' => $row[10],
 							'slides' => $row[11],
+							'is_sponsor' => (boolean) $row[12],
 						));
 					if (!$this->validates()) {
 						$errors = implode(', ', array_map(function($n) {
 							return implode(', ', $n);
 						}, $this->validationErrors));
-						throw new Exception("Validation errors on row `{$i}`: " . $errors);
+						pr($row);
+						throw new Exception("Validation errors on row `{$i}`: " . $errors . ' ---- ' . implode(',', $row));
 					}
 					$saved = $this->save();
 					if (!$saved) {
