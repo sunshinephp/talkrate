@@ -13,23 +13,23 @@ echo $this->element('pagination');
 ?>
 <table class="table table-striped table-bordered table-hover">
 	<tr>
-		<th><?php echo $this->Paginator->sort('Talk.name', 'Name'); ?></th>
-		<th><?php echo $this->Paginator->sort('Talk.first_name', 'First Name'); ?></th>
-		<th><?php echo $this->Paginator->sort('Talk.last_name', 'Last Name'); ?></th>
-		<th><?php echo $this->Paginator->sort('Talk.talk_level', 'Level'); ?></th>
-		<th><?php echo $this->Paginator->sort('Talk.talk_category', 'Category'); ?></th>
-		<th><?php echo $this->Paginator->sort('TalkRating.rating', 'Your Rating'); ?></th>
-		<th class="actions"><?php echo __('Actions'); ?></th>
+		<th nowrap><?php echo $this->Paginator->sort('Talk.name', 'Name'); ?></th>
+		<th nowrap><?php echo $this->Paginator->sort('Talk.first_name', 'First Name'); ?></th>
+		<th nowrap><?php echo $this->Paginator->sort('Talk.last_name', 'Last Name'); ?></th>
+		<th nowrap><?php echo $this->Paginator->sort('Talk.talk_level', 'Level'); ?></th>
+		<th nowrap><?php echo $this->Paginator->sort('Talk.talk_category', 'Category'); ?></th>
+		<th nowrap><?php echo $this->Paginator->sort('TalkRating.rating', 'Your Rating'); ?></th>
+		<th nowrap class="actions"><?php echo __('Actions'); ?></th>
 	</tr>
 	<?php
 	foreach ($talks as $talk): ?>
 		<tr>
 			<td><?php echo $this->Html->link($talk['Talk']['name'], array('action' => 'view', $talk['Talk']['id'])); ?>&nbsp;</td>
-			<td><?php echo h($talk['Talk']['first_name']); ?>&nbsp;</td>
-			<td><?php echo h($talk['Talk']['last_name']); ?>&nbsp;</td>
-			<td><?php echo h($talk['Talk']['talk_level']); ?>&nbsp;</td>
-			<td><?php echo h($talk['Talk']['talk_category']); ?>&nbsp;</td>
-			<td>
+			<td nowrap><?php echo h($talk['Talk']['first_name']); ?>&nbsp;</td>
+			<td nowrap><?php echo h($talk['Talk']['last_name']); ?>&nbsp;</td>
+			<td nowrap><?php echo h($talk['Talk']['talk_level']); ?>&nbsp;</td>
+			<td nowrap><?php echo h($talk['Talk']['talk_category']); ?>&nbsp;</td>
+			<td nowrap>
 				<?php
 				$user_rating = isset($talk['Talk']['user_rating']) ? (integer) $talk['Talk']['user_rating'] : 0;
 				?>
@@ -38,7 +38,7 @@ echo $this->element('pagination');
 					 data-rateit-value="<?php echo $talk['TalkRating']['rating'] ?>"
 					 data-talk-id="<?php echo $talk['Talk']['id'] ?>"></div>
 			</td>
-			<td class="actions">
+			<td nowrap class="actions">
 				<?php
 				echo $this->Html->link(__('View Details'), array('action' => 'view', $talk['Talk']['id']), array('class' => 'btn'));
 				?>
