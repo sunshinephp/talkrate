@@ -5,3 +5,7 @@ body {
 .tools {
     margin: 5px 0;
 }
+
+.pagination .current {
+    font-weight: bold;
+}
