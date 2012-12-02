@@ -64,7 +64,22 @@ class TalksController extends AppController {
 		if (!$this->Talk->exists()) {
 			throw new NotFoundException(__('Invalid talk'));
 		}
-		$this->set('talk', $this->Talk->read(null, $id));
+		$talk = $this->Talk->find('first', array(
+			'fields' => array('Talk.*', 'TalkRating.rating'),
+			'joins' => array(
+				array(
+					'table' => 'talk_ratings',
+					'alias' => 'TalkRating',
+					'type' => 'LEFT',
+					'conditions' => array('TalkRating.talk_id = Talk.id', 'TalkRating.user_id' => $this->Auth->user('id')
+					)
+				),
+			),
+			'conditions' => array('Talk.id' => $id)
+		));
+		$neighbors = $this->Talk->find('neighbors', array('fields' => array('id', 'name'), 'recursive' => -1));
+		$this->set('talk', $talk);
+		$this->set('neighbors', $neighbors);
 	}
 
 /**

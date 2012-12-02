@@ -1,8 +1,48 @@
 <h2><?php echo h($talk['Talk']['name']); ?></h2>
-	<dl>
+<?php
+if ($isAdmin) {
+	?>
+<section class="tools">
+	<?php echo $this->Html->link('Edit Talk', array('action' => 'edit', $talk['Talk']['id']), array('class' => 'btn')); ?>
+    <?php echo $this->Form->postLink(__('Delete Talk'), array('action' => 'delete', $talk['Talk']['id']), array('class' => array('btn', 'btn-danger')), __('Are you sure you want to delete # %s?', $talk['Talk']['id'])); ?>
+</section>
+<?php
+}
+?>
+<hr />
+<section>
+	<ul>
+		<?php
+		if (!empty($neighbors['prev']['Talk'])) {
+			?>
+            <li><?php echo 'Previous talk: ' . $this->Html->link($neighbors['prev']['Talk']['name'], array('action' => 'view', h($neighbors['prev']['Talk']['id']))); ?></li>
+
+			<?php
+		}
+
+		if (!empty($neighbors['next']['Talk'])) {
+			?>
+            <li><?php echo 'Next talk: ' . $this->Html->link($neighbors['next']['Talk']['name'], array('action' => 'view', h($neighbors['next']['Talk']['id']))); ?></li>
+			<?php
+		}
+		?>
+	</ul>
+</section>
+<dl>
 		<dt><?php echo __('Id'); ?></dt>
 		<dd>
 			<?php echo h($talk['Talk']['id']); ?>
+			&nbsp;
+		</dd>
+		<dt><?php echo __('Your Rating'); ?></dt>
+		<dd>
+			<?php
+			$user_rating = isset($talk['Talk']['user_rating']) ? (integer) $talk['Talk']['user_rating'] : 0;
+			?>
+            <div class="rating"
+                 data-rating="<?php echo $talk['TalkRating']['rating'] ?>"
+                 data-rateit-value="<?php echo $talk['TalkRating']['rating'] ?>"
+                 data-talk-id="<?php echo $talk['Talk']['id'] ?>"></div>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Name'); ?></dt>
@@ -60,11 +100,18 @@
 			<?php echo h($talk['Talk']['other_info']); ?>
 			&nbsp;
 		</dd>
-		<dt><?php echo __('Slides'); ?></dt>
-		<dd>
-			<?php echo h($talk['Talk']['slides']); ?>
-			&nbsp;
-		</dd>
+	    <?php
+		if ($talk['Talk']['slides']) {
+			?>
+            <dt><?php echo __('Slides'); ?></dt>
+            <dd>
+				<?php echo $this->Html->link($talk['Talk']['slides'], $talk['Talk']['slides'], array('escape' => false, 'target' => '_blank')); ?>
+				<span class="label label-info">Opens in a New Window</span>
+                &nbsp;
+            </dd>
+			<?php
+		}
+		?>
 		<dt><?php echo __('Is Sponsor'); ?></dt>
 		<dd>
 			<?php echo h($talk['Talk']['is_sponsor']); ?>
@@ -82,40 +129,5 @@
 		</dd>
 	</dl>
 
-<div class="actions">
-	<h3><?php echo __('Actions'); ?></h3>
-	<ul>
-		<li><?php echo $this->Html->link(__('Edit Talk'), array('action' => 'edit', $talk['Talk']['id'])); ?> </li>
-		<li><?php echo $this->Form->postLink(__('Delete Talk'), array('action' => 'delete', $talk['Talk']['id']), null, __('Are you sure you want to delete # %s?', $talk['Talk']['id'])); ?> </li>
-	</ul>
-</div>
-<div class="related">
-	<h3><?php echo __('Related Talk Ratings'); ?></h3>
-	<?php if (!empty($talk['TalkRating'])): ?>
-	<table cellpadding = "0" cellspacing = "0">
-	<tr>
-		<th><?php echo __('Id'); ?></th>
-		<th><?php echo __('User Id'); ?></th>
-		<th><?php echo __('Talk Id'); ?></th>
-		<th><?php echo __('Rating'); ?></th>
-		<th class="actions"><?php echo __('Actions'); ?></th>
-	</tr>
-	<?php
-		$i = 0;
-		foreach ($talk['TalkRating'] as $talkRating): ?>
-		<tr>
-			<td><?php echo $talkRating['id']; ?></td>
-			<td><?php echo $talkRating['user_id']; ?></td>
-			<td><?php echo $talkRating['talk_id']; ?></td>
-			<td><?php echo $talkRating['rating']; ?></td>
-			<td class="actions">
-				<?php echo $this->Html->link(__('View'), array('controller' => 'talk_ratings', 'action' => 'view', $talkRating['id'])); ?>
-				<?php echo $this->Html->link(__('Edit'), array('controller' => 'talk_ratings', 'action' => 'edit', $talkRating['id'])); ?>
-				<?php echo $this->Form->postLink(__('Delete'), array('controller' => 'talk_ratings', 'action' => 'delete', $talkRating['id']), null, __('Are you sure you want to delete # %s?', $talkRating['id'])); ?>
-			</td>
-		</tr>
-	<?php endforeach; ?>
-	</table>
-<?php endif; ?>
-
-</div>
+<?php
+echo $this->element('Talks/rating_javascript');
