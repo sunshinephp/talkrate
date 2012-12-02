@@ -31,6 +31,10 @@ class UsersController extends AppController {
 		return $this->redirect($this->Auth->logout());
 	}
 
+	public function admin_logout() {
+		return $this->logout();
+	}
+
 /**
  * index method
  *
