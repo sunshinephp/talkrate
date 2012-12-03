@@ -143,25 +143,25 @@ class Talk extends AppModel {
 				$i = 0;
 				while (($row = fgetcsv($handle, 1000, ",")) !== FALSE) {
 					$this->create(array(
-							'first_name' => $row[0],
-							'last_name' => $row[1],
-							'email' => $row[2],
-							'bio' => $row[3],
-							'location' => $row[4],
-							'talk_level' => $row[5],
-							'talk_category' => $row[6],
-							'name' => $row[7],
-							'abstract' => $row[8],
-							'is_most_desired' => (boolean) $row[9],
-							'other_info' => $row[10],
-							'slides' => $row[11],
-							'is_sponsor' => (boolean) $row[12],
+							'created' => $row[0],
+							'first_name' => $row[1],
+							'last_name' => $row[2],
+							'email' => $row[3],
+							'bio' => $row[4],
+							'location' => $row[5],
+							'talk_level' => $row[6],
+							'talk_category' => $row[7],
+							'name' => $row[8],
+							'abstract' => $row[9],
+							'is_most_desired' => (boolean) $row[10],
+							'other_info' => $row[11],
+							'slides' => $row[12],
+							'is_sponsor' => (boolean) $row[13],
 						));
 					if (!$this->validates()) {
 						$errors = implode(', ', array_map(function($n) {
 							return implode(', ', $n);
 						}, $this->validationErrors));
-						pr($row);
 						throw new Exception("Validation errors on row `{$i}`: " . $errors . ' ---- ' . implode(',', $row));
 					}
 					$saved = $this->save();

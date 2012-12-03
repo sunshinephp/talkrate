@@ -19,6 +19,7 @@ echo $this->element('pagination');
 		<th nowrap><?php echo $this->Paginator->sort('Talk.talk_level', 'Level'); ?></th>
 		<th nowrap><?php echo $this->Paginator->sort('Talk.talk_category', 'Category'); ?></th>
 		<th nowrap><?php echo $this->Paginator->sort('TalkRating.rating', 'Your Rating'); ?></th>
+		<th nowrap><?php echo $this->Paginator->sort('TalkRating.created', 'Submitted'); ?></th>
 		<th nowrap class="actions"><?php echo __('Actions'); ?></th>
 	</tr>
 	<?php
@@ -37,6 +38,9 @@ echo $this->element('pagination');
 					 data-rating="<?php echo $talk['TalkRating']['rating'] ?>"
 					 data-rateit-value="<?php echo $talk['TalkRating']['rating'] ?>"
 					 data-talk-id="<?php echo $talk['Talk']['id'] ?>"></div>
+			</td>
+			<td nowrap>
+				<?php echo h($talk['Talk']['created']); ?>
 			</td>
 			<td nowrap class="actions">
 				<?php
