@@ -19,7 +19,7 @@ echo $this->element('pagination');
 		<th nowrap><?php echo $this->Paginator->sort('Talk.talk_level', 'Level'); ?></th>
 		<th nowrap><?php echo $this->Paginator->sort('Talk.talk_category', 'Category'); ?></th>
 		<th nowrap><?php echo $this->Paginator->sort('TalkRating.rating', 'Your Rating'); ?></th>
-		<th nowrap><?php echo $this->Paginator->sort('TalkRating.created', 'Submitted'); ?></th>
+		<th nowrap><?php echo $this->Paginator->sort('Talk.created', 'Submitted'); ?></th>
 		<th nowrap class="actions"><?php echo __('Actions'); ?></th>
 	</tr>
 	<?php
