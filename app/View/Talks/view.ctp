@@ -1,4 +1,5 @@
 <h2><?php echo h($talk['Talk']['name']); ?></h2>
+
 <?php
 if ($isAdmin) {
 	?>
@@ -10,6 +11,7 @@ if ($isAdmin) {
 }
 ?>
 <hr />
+
 <section>
 	<ul>
 		<?php

@@ -25,7 +25,24 @@ echo $this->element('pagination');
 	<?php
 	foreach ($talks as $talk): ?>
 		<tr>
-			<td><?php echo $this->Html->link($talk['Talk']['name'], array('action' => 'view', $talk['Talk']['id'])); ?>&nbsp;</td>
+			<td>
+				<?php echo $this->Html->link($talk['Talk']['name'], array('action' => 'view', $talk['Talk']['id'])); ?>&nbsp;
+				<?php
+				if ($talk['Talk']['is_most_desired']) {
+					?>
+                    <span class="label label-info">Most Desired</span>
+					<?php
+				}
+				?>
+
+				<?php
+				if ($talk['Talk']['is_sponsor']) {
+					?>
+                    <span class="label label-success">Sponsor</span>
+					<?php
+				}
+				?>
+			</td>
 			<td nowrap><?php echo h($talk['Talk']['first_name']); ?>&nbsp;</td>
 			<td nowrap><?php echo h($talk['Talk']['last_name']); ?>&nbsp;</td>
 			<td nowrap><?php echo h($talk['Talk']['talk_level']); ?>&nbsp;</td>
