@@ -9,3 +9,8 @@ body {
 .pagination .current {
     font-weight: bold;
 }
+
+textarea {
+	width: 500px;
+	height: 200px;
+}

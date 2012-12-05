@@ -17,7 +17,7 @@ class TalksController extends AppController {
 		$this->Talk->recursive = 0;
 		$this->Paginator->settings = array(
 			'Talk' => array(
-				'limit' => 30,
+				'limit' => 300,
 				'fields' => array('Talk.*', 'TalkRating.rating'),
 				'joins' => array(
 					array(
