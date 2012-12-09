@@ -124,6 +124,21 @@ class TalkRatingsController extends AppController {
 		return new CakeResponse(array('type' => 'json', 'body' => json_encode($results)));
 	}
 
+	public function export() {
+		$this->viewClass = 'Media';
+		$file_name = 'talk_ratings.csv';
+		$path = TMP . DS . $file_name;
+		$this->TalkRating->buildCsvFileForExport($path);
+		$params = array(
+			'id'        => $file_name,
+			'name'      => 'example',
+			'download'  => true,
+			'extension' => 'csv',
+			'path'      => TMP
+		);
+		$this->set($params);
+	}
+
 /**
  * admin_index method
  *

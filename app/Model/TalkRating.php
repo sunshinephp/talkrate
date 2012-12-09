@@ -77,4 +77,38 @@ class TalkRating extends AppModel {
 			'order' => ''
 		)
 	);
+
+	public function buildCsvFileForExport($path = '') {
+		$sql = "
+			SELECT
+				*
+			FROM
+				talk_ratings AS TalkRating
+			INNER JOIN
+				talks AS Talk ON Talk.id = TalkRating.talk_id
+			LEFT JOIN
+				users AS User ON User.id = TalkRating.user_id
+			ORDER BY
+				Talk.name ASC
+		";
+		$talks_and_ratings = $this->query($sql, false);
+
+		$fp = fopen($path, 'w');
+
+		fputcsv($fp, array('talk_name', 'speaker_name', 'rating', 'rated_by'));
+
+		foreach ($talks_and_ratings as $talk_and_rating) {
+			$fields = array(
+				$talk_and_rating['Talk']['name'],
+				$talk_and_rating['Talk']['first_name'] . ' ' . $talk_and_rating['Talk']['last_name'],
+				$talk_and_rating['TalkRating']['rating'],
+				$talk_and_rating['User']['email']
+			);
+			fputcsv($fp, $fields);
+		}
+
+		fclose($fp);
+
+		return true;
+	}
 }
