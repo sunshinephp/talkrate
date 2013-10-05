@@ -90,16 +90,16 @@ class Talk extends AppModel {
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			//),
 		),
-		'slides' => array(
-			'url' => array(
-				'rule' => array('url'),
-				'message' => 'Please enter a valid url for the slides',
-				'allowEmpty' => true,
-				//'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
-		),
+//		'slides' => array(
+//			'url' => array(
+//				'rule' => array('url'),
+//				'message' => 'Please enter a valid url for the slides',
+//				'allowEmpty' => true,
+//				//'required' => false,
+//				//'last' => false, // Stop validation after this rule
+//				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+//			),
+//		),
 		'is_sponsor' => array(
 			//'boolean' => array(
 				//'rule' => array('boolean'),
@@ -181,4 +181,53 @@ class Talk extends AppModel {
 
 		return true;
 	}
+    
+    public function cfpImport($cfpUsers)
+    {
+        try {
+            $failures = false;
+            
+            foreach ($cfpUsers as $cfpUser) {
+                foreach ($cfpUser['CfpTalk'] as $cfpTalk) {
+                    $this->create(array(
+                            'created' => mysql_real_escape_string($cfpUser['CfpUser']['created_at']),
+                            'first_name' => mysql_real_escape_string($cfpUser['CfpUser']['first_name']),
+                            'last_name' => mysql_real_escape_string($cfpUser['CfpUser']['last_name']),
+                            'email' => mysql_real_escape_string($cfpUser['CfpUser']['email']),
+                            'bio' => mysql_real_escape_string((isset($cfpUser['CfpSpeaker']['bio']) ? $cfpUser['CfpSpeaker']['bio'] : '')),
+                            'location' => mysql_real_escape_string((isset($cfpUser['CfpSpeaker']['info']) ? $cfpUser['CfpSpeaker']['info'] : '')),
+                            'talk_level' => mysql_real_escape_string($cfpTalk['level']),
+                            'talk_category' => mysql_real_escape_string($cfpTalk['category']),
+                            'name' => mysql_real_escape_string($cfpTalk['title']),
+                            'abstract' => mysql_real_escape_string($cfpTalk['description']),
+                            'is_most_desired' => (boolean) mysql_real_escape_string($cfpTalk['desired']),
+                            'other_info' => mysql_real_escape_string($cfpTalk['other']),
+                            'slides' => mysql_real_escape_string($cfpTalk['slides']),
+                            'is_sponsor' => (boolean) mysql_real_escape_string($cfpTalk['sponsor']),
+                        ));
+
+                    $saved = $this->save();
+
+                    if (!$saved) {
+                        $failures[] = "Talk Title =  `{$cfpTalk['title']}` failed to save<br />\n";
+                    }
+                }
+            }
+            
+            if ($failures) {
+                $output = '';
+                
+                foreach ($failures as $fails) {
+                    $output .= $fails;
+                }
+                
+                throw new InternalErrorException($output);
+            }
+
+        } catch (Exception $ex) {
+            throw $ex;
+        }
+
+        return true;
+    }
 }

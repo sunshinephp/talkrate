@@ -8,6 +8,8 @@ App::uses('AppController', 'Controller');
 class TalksController extends AppController {
 
 	public $components = array('Paginator');
+    
+    public $uses = array('Talk', 'CfpUser');
 /**
  * index method
  *
@@ -141,7 +143,10 @@ class TalksController extends AppController {
 		$this->set('talks', $this->paginate());
 	}
 
-	public function upload() {
+    /**
+     * @return mixed
+     */
+    public function upload() {
 		if ($this->request->is('post')) {
 
 			try {
@@ -153,6 +158,22 @@ class TalksController extends AppController {
 			}
 		}
 	}
+    
+    public function cfpimport ()
+    {
+        if ($this->request->is('post')) {
+
+            try {
+                $cfpUsers = $this->CfpUser->find('all', array('order' => array('CfpUser.last_name ASC')));
+                
+                $this->Talk->cfpImport($cfpUsers);
+                $this->Session->setFlash('Open CFP Talks imported successfully');
+                return $this->redirect('/');
+            } catch (Exception $ex) {
+                $this->Session->setFlash('Errors encountered importing talks: <br />' . $ex->getMessage());
+            }
+        }
+    }
 
 /**
  * admin_view method
