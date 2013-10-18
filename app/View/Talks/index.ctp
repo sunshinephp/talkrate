@@ -22,7 +22,7 @@ echo $this->element('pagination');
 		<th nowrap><?php echo $this->Paginator->sort('Talk.talk_type', 'Type'); ?></th>
 		<th nowrap><?php echo $this->Paginator->sort('Talk.talk_level', 'Level'); ?></th>
 		<th nowrap><?php echo $this->Paginator->sort('Talk.talk_category', 'Category'); ?></th>
-		<th nowrap><?php echo $this->Paginator->sort('TalkRating.rating', 'Your Rating'); ?></th>
+		<th nowrap><?php echo __('Your Rating'); ?></th>
 		<th nowrap><?php echo $this->Paginator->sort('Talk.created', 'Submitted'); ?></th>
 		<th nowrap class="actions"><?php echo __('Actions'); ?></th>
 	</tr>
@@ -76,9 +76,9 @@ echo $this->element('pagination');
 					 data-rateit-value="<?php echo $userRating; ?>"
 					 data-talk-id="<?php echo $talk['Talk']['id'] ?>"></div>
                 
-            <?php if ($isAdmin) { ?>
+            <?php // if ($isAdmin) { ?>
                 <div>Avg = <?php echo ($avgRating/$i) . '<br />(rates-' . $i . ')'; ?></div>
-            <?php } ?>
+            <?php // } ?>
 			</td>
 			<td nowrap>
 				<?php echo h($talk['Talk']['created']); ?>
