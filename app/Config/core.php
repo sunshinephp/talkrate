@@ -34,6 +34,7 @@
  */
 	$is_production = !empty($_SERVER['HTTP_HOST']) && $_SERVER['HTTP_HOST'] === 'talks.sunshinephp.com' ? true : false; 
 	Configure::write('debug', $is_production ? 0 : 2);
+//    Configure::write('debug', 2);
 
 /**
  * Configure the Error handler used to handle errors for your application.  By default
