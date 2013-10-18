@@ -7,16 +7,17 @@
  * PHP 5
  *
  * CakePHP(tm) Tests <http://book.cakephp.org/2.0/en/development/testing.html>
- * Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * Copyright (c) Cake Software Foundation, Inc. (http://cakefoundation.org)
  *
  * Licensed under The MIT License
+ * For full copyright and license information, please see the LICENSE.txt
  * Redistributions of files must retain the above copyright notice
  *
- * @copyright     Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * @copyright     Copyright (c) Cake Software Foundation, Inc. (http://cakefoundation.org)
  * @link          http://book.cakephp.org/2.0/en/development/testing.html CakePHP(tm) Tests
  * @package       Cake.Test.Case.Model.Behavior
  * @since         CakePHP(tm) v 1.2.0.5330
- * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
+ * @license       http://www.opensource.org/licenses/mit-license.php MIT License
  */
 
 App::uses('Model', 'Model');
@@ -63,6 +64,7 @@ class TreeBehaviorScopedTest extends CakeTestCase {
  */
 	public function testStringScope() {
 		$this->Tree = new FlagTree();
+		$this->Tree->order = null;
 		$this->Tree->initialize(2, 3);
 
 		$this->Tree->id = 1;
@@ -99,6 +101,7 @@ class TreeBehaviorScopedTest extends CakeTestCase {
  */
 	public function testArrayScope() {
 		$this->Tree = new FlagTree();
+		$this->Tree->order = null;
 		$this->Tree->initialize(2, 3);
 
 		$this->Tree->id = 1;
@@ -135,6 +138,7 @@ class TreeBehaviorScopedTest extends CakeTestCase {
  */
 	public function testMoveUpWithScope() {
 		$this->Ad = new Ad();
+		$this->Ad->order = null;
 		$this->Ad->Behaviors->attach('Tree', array('scope' => 'Campaign'));
 		$this->Ad->moveUp(6);
 
@@ -151,6 +155,7 @@ class TreeBehaviorScopedTest extends CakeTestCase {
  */
 	public function testMoveDownWithScope() {
 		$this->Ad = new Ad();
+		$this->Ad->order = null;
 		$this->Ad->Behaviors->attach('Tree', array('scope' => 'Campaign'));
 		$this->Ad->moveDown(6);
 
@@ -168,6 +173,7 @@ class TreeBehaviorScopedTest extends CakeTestCase {
  */
 	public function testTranslatingTree() {
 		$this->Tree = new FlagTree();
+		$this->Tree->order = null;
 		$this->Tree->cacheQueries = false;
 		$this->Tree->Behaviors->attach('Translate', array('title'));
 
@@ -285,9 +291,11 @@ class TreeBehaviorScopedTest extends CakeTestCase {
 	public function testAliasesWithScopeInTwoTreeAssociations() {
 		extract($this->settings);
 		$this->Tree = new $modelClass();
+		$this->Tree->order = null;
 		$this->Tree->initialize(2, 2);
 
 		$this->TreeTwo = new NumberTreeTwo();
+		$this->TreeTwo->order = null;
 
 		$record = $this->Tree->find('first');
 
@@ -332,4 +340,44 @@ class TreeBehaviorScopedTest extends CakeTestCase {
 		));
 		$this->assertEquals($expected, $result);
 	}
+
+/**
+ * testGenerateTreeListWithScope method
+ *
+ * @return void
+ */
+	public function testGenerateTreeListWithScope() {
+		extract($this->settings);
+		$this->Tree = new $modelClass();
+		$this->Tree->order = null;
+		$this->Tree->initialize(2, 3);
+
+		$this->Tree->id = 1;
+		$this->Tree->saveField('flag', 1);
+		$this->Tree->id = 2;
+		$this->Tree->saveField('flag', 1);
+
+		$this->Tree->Behaviors->attach('Tree', array('scope' => array('FlagTree.flag' => 1)));
+
+		$result = $this->Tree->generateTreeList();
+		$expected = array(
+			1 => '1. Root',
+			2 => '_1.1'
+		);
+		$this->assertEquals($expected, $result);
+
+		// As string.
+		$this->Tree->Behaviors->attach('Tree', array('scope' => 'FlagTree.flag = 1'));
+
+		$result = $this->Tree->generateTreeList();
+		$this->assertEquals($expected, $result);
+
+		// Merging conditions.
+		$result = $this->Tree->generateTreeList(array('FlagTree.id >' => 1));
+		$expected = array(
+			2 => '1.1'
+		);
+		$this->assertEquals($expected, $result);
+	}
+
 }
