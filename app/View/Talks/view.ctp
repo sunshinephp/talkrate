@@ -77,6 +77,11 @@ if ($isAdmin) {
 			<?php echo h($talk['Talk']['location']); ?>
 			&nbsp;
 		</dd>
+		<dt><?php echo __('Talk Type'); ?></dt>
+		<dd>
+			<?php echo h($talk['Talk']['talk_type']); ?>
+			&nbsp;
+		</dd>
 		<dt><?php echo __('Talk Level'); ?></dt>
 		<dd>
 			<?php echo h($talk['Talk']['talk_level']); ?>

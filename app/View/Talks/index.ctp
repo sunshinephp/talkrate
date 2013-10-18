@@ -1,3 +1,4 @@
+<?php // print_r($talks); ?>
 <h2><?php echo __('Talks'); ?></h2>
 
 <?php
@@ -18,6 +19,7 @@ echo $this->element('pagination');
 		<th nowrap><?php echo $this->Paginator->sort('Talk.name', 'Name'); ?></th>
 		<th nowrap><?php echo $this->Paginator->sort('Talk.first_name', 'First Name'); ?></th>
 		<th nowrap><?php echo $this->Paginator->sort('Talk.last_name', 'Last Name'); ?></th>
+		<th nowrap><?php echo $this->Paginator->sort('Talk.talk_type', 'Type'); ?></th>
 		<th nowrap><?php echo $this->Paginator->sort('Talk.talk_level', 'Level'); ?></th>
 		<th nowrap><?php echo $this->Paginator->sort('Talk.talk_category', 'Category'); ?></th>
 		<th nowrap><?php echo $this->Paginator->sort('TalkRating.rating', 'Your Rating'); ?></th>
@@ -47,16 +49,36 @@ echo $this->element('pagination');
 			</td>
 			<td nowrap><?php echo h($talk['Talk']['first_name']); ?>&nbsp;</td>
 			<td nowrap><?php echo h($talk['Talk']['last_name']); ?>&nbsp;</td>
+			<td nowrap><?php echo h($talk['Talk']['talk_type']); ?>&nbsp;</td>
 			<td nowrap><?php echo h($talk['Talk']['talk_level']); ?>&nbsp;</td>
 			<td nowrap><?php echo h($talk['Talk']['talk_category']); ?>&nbsp;</td>
 			<td nowrap>
-				<?php
-				$user_rating = isset($talk['Talk']['user_rating']) ? (integer) $talk['Talk']['user_rating'] : 0;
+                <?php
+                    $i = 0;
+                    $avgRating = 0;
+                    $userRating = 0;
+                
+                    // get average rating for admin, and the users current rating
+                    foreach ($talk['TalkRating'] as $rating) {
+                        $avgRating += $rating['rating'];
+
+                        if ($rating['user_id'] == $user_id) {
+                            $userRating = $rating['rating'];
+                        }
+                        $i++;
+                    }
+                
+                    // iterator needs to be at least one for average below
+                    $i = ($i > 0) ? $i : 1;
 				?>
 				<div class="rating"
-					 data-rating="<?php echo $talk['TalkRating']['rating'] ?>"
-					 data-rateit-value="<?php echo $talk['TalkRating']['rating'] ?>"
+					 data-rating="<?php echo $userRating; ?>"
+					 data-rateit-value="<?php echo $userRating; ?>"
 					 data-talk-id="<?php echo $talk['Talk']['id'] ?>"></div>
+                
+            <?php if ($isAdmin) { ?>
+                <div>Avg = <?php echo ($avgRating/$i); ?></div>
+            <?php } ?>
 			</td>
 			<td nowrap>
 				<?php echo h($talk['Talk']['created']); ?>

@@ -60,6 +60,16 @@ class Talk extends AppModel {
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 		),
+		'talk_type' => array(
+			'alphanumeric' => array(
+				'rule' => array('alphanumeric'),
+				//'message' => 'Your custom message here',
+				'allowEmpty' => true,
+				//'required' => false,
+				//'last' => false, // Stop validation after this rule
+				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+			),
+		),
 		'talk_level' => array(
 			'alphanumeric' => array(
 				'rule' => array('alphanumeric'),
@@ -149,14 +159,15 @@ class Talk extends AppModel {
 							'email' => $row[3],
 							'bio' => $row[4],
 							'location' => $row[5],
-							'talk_level' => $row[6],
-							'talk_category' => $row[7],
-							'name' => $row[8],
-							'abstract' => $row[9],
-							'is_most_desired' => (boolean) $row[10],
-							'other_info' => $row[11],
-							'slides' => $row[12],
-							'is_sponsor' => (boolean) $row[13],
+							'talk_type' => $row[6],
+							'talk_level' => $row[7],
+							'talk_category' => $row[8],
+							'name' => $row[9],
+							'abstract' => $row[10],
+							'is_most_desired' => (boolean) $row[11],
+							'other_info' => $row[12],
+							'slides' => $row[13],
+							'is_sponsor' => (boolean) $row[14],
 						));
 					if (!$this->validates()) {
 						$errors = implode(', ', array_map(function($n) {
@@ -190,20 +201,21 @@ class Talk extends AppModel {
             foreach ($cfpUsers as $cfpUser) {
                 foreach ($cfpUser['CfpTalk'] as $cfpTalk) {
                     $this->create(array(
-                            'created' => mysql_real_escape_string($cfpUser['CfpUser']['created_at']),
-                            'first_name' => mysql_real_escape_string($cfpUser['CfpUser']['first_name']),
-                            'last_name' => mysql_real_escape_string($cfpUser['CfpUser']['last_name']),
-                            'email' => mysql_real_escape_string($cfpUser['CfpUser']['email']),
-                            'bio' => mysql_real_escape_string((isset($cfpUser['CfpSpeaker']['bio']) ? $cfpUser['CfpSpeaker']['bio'] : '')),
-                            'location' => mysql_real_escape_string((isset($cfpUser['CfpSpeaker']['info']) ? $cfpUser['CfpSpeaker']['info'] : '')),
-                            'talk_level' => mysql_real_escape_string($cfpTalk['level']),
-                            'talk_category' => mysql_real_escape_string($cfpTalk['category']),
-                            'name' => mysql_real_escape_string($cfpTalk['title']),
-                            'abstract' => mysql_real_escape_string($cfpTalk['description']),
-                            'is_most_desired' => (boolean) mysql_real_escape_string($cfpTalk['desired']),
-                            'other_info' => mysql_real_escape_string($cfpTalk['other']),
-                            'slides' => mysql_real_escape_string($cfpTalk['slides']),
-                            'is_sponsor' => (boolean) mysql_real_escape_string($cfpTalk['sponsor']),
+                            'created' => $cfpUser['CfpUser']['created_at'],
+                            'first_name' => $cfpUser['CfpUser']['first_name'],
+                            'last_name' => $cfpUser['CfpUser']['last_name'],
+                            'email' => $cfpUser['CfpUser']['email'],
+                            'bio' => (isset($cfpUser['CfpSpeaker'][0]['bio']) ? $cfpUser['CfpSpeaker'][0]['bio'] : ''),
+                            'location' => (isset($cfpUser['CfpSpeaker'][0]['info']) ? $cfpUser['CfpSpeaker'][0]['info'] : ''),
+                            'talk_type' => $cfpTalk['type'],
+                            'talk_level' => $cfpTalk['level'],
+                            'talk_category' => $cfpTalk['category'],
+                            'name' => $cfpTalk['title'],
+                            'abstract' => $cfpTalk['description'],
+                            'is_most_desired' => (boolean) $cfpTalk['desired'],
+                            'other_info' => $cfpTalk['other'],
+                            'slides' => $cfpTalk['slides'],
+                            'is_sponsor' => (boolean) $cfpTalk['sponsor'],
                         ));
 
                     $saved = $this->save();

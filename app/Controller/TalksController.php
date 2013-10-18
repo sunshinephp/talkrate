@@ -16,25 +16,26 @@ class TalksController extends AppController {
  * @return void
  */
 	public function index() {
-		$this->Talk->recursive = 0;
+		$this->Talk->recursive = 1;
+        $this->set('user_id', $this->Auth->user('id'));
 		$this->Paginator->settings = array(
 			'Talk' => array(
-				'limit' => 300,
-				'fields' => array('Talk.*', 'TalkRating.rating'),
-				'joins' => array(
-					array(
-						'table' => 'talk_ratings',
-						'alias' => 'TalkRating',
-						'type' => 'LEFT',
-						'conditions' => array('TalkRating.talk_id = Talk.id', 'TalkRating.user_id' => $this->Auth->user('id')
-						)
-					)
-				)
+				'limit' => 100,
+//				'fields' => array('Talk.*', 'TalkRating.rating'),
+//				'joins' => array(
+//                    array(
+//                        'table' => 'talk_ratings',
+//                        'alias' => 'TalkRating',
+//                        'type' => 'INNER',
+//                        'conditions' => array('TalkRating.talk_id = Talk.id', 'TalkRating.user_id' => $this->Auth->user('id'))
+//                    )
+//				),
+                'conditions' => array('Talk.talk_type' => 'tutorial')
 			)
-
 		);
+        
 		$talks = $this->Paginator->paginate();
-
+        
 		$this->set('talks', $talks);
 	}
 
@@ -167,6 +168,7 @@ class TalksController extends AppController {
                 $cfpUsers = $this->CfpUser->find('all', array('order' => array('CfpUser.last_name ASC')));
                 
                 $this->Talk->cfpImport($cfpUsers);
+                
                 $this->Session->setFlash('Open CFP Talks imported successfully');
                 return $this->redirect('/');
             } catch (Exception $ex) {
