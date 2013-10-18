@@ -77,7 +77,7 @@ echo $this->element('pagination');
 					 data-talk-id="<?php echo $talk['Talk']['id'] ?>"></div>
                 
             <?php if ($isAdmin) { ?>
-                <div>Avg = <?php echo ($avgRating/$i); ?></div>
+                <div>Avg = <?php echo ($avgRating/$i) . '<br />(rates-' . $i . ')'; ?></div>
             <?php } ?>
 			</td>
 			<td nowrap>
