@@ -30,7 +30,9 @@ class TalksController extends AppController {
 //                        'conditions' => array('TalkRating.talk_id = Talk.id', 'TalkRating.user_id' => $this->Auth->user('id'))
 //                    )
 //				),
+                // alter the next two lines depending on what type of talks we are to see
                 'conditions' => array('Talk.talk_type' => 'tutorial')
+// 				'conditions' => array('Talk.talk_type' => 'regular')
 			)
 		);
         
