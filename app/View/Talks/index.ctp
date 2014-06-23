@@ -28,6 +28,28 @@ echo $this->element('pagination');
 	</tr>
 	<?php
 	foreach ($talks as $talk): ?>
+        <?php
+        $i = 0;
+        $avgRating = 0;
+        $userRating = 0;
+        $ratingList = '';
+
+        // get average rating for admin, and the users current rating
+        foreach ($talk['TalkRating'] as $rating) {
+            $avgRating += $rating['rating'];
+            $ratingList .= $rating['user_id'] . "=" . $rating['rating'] . ', ';
+
+            if ($rating['user_id'] == $user_id) {
+                $userRating = $rating['rating'];
+            }
+            $i++;
+        }
+
+        $talkAverage = round(($avgRating/(($i > 0) ? $i : 1)));
+        
+//        if ($talkAverage >= 4) {
+        if (1 == 1) {
+        ?>
 		<tr>
 			<td>
 				<?php echo $this->Html->link($talk['Talk']['name'], array('action' => 'view', $talk['Talk']['id'])); ?>&nbsp;
@@ -53,32 +75,18 @@ echo $this->element('pagination');
 			<td nowrap><?php echo h($talk['Talk']['talk_level']); ?>&nbsp;</td>
 			<td nowrap><?php echo h($talk['Talk']['talk_category']); ?>&nbsp;</td>
 			<td nowrap>
-                <?php
-                    $i = 0;
-                    $avgRating = 0;
-                    $userRating = 0;
-                
-                    // get average rating for admin, and the users current rating
-                    foreach ($talk['TalkRating'] as $rating) {
-                        $avgRating += $rating['rating'];
-
-                        if ($rating['user_id'] == $user_id) {
-                            $userRating = $rating['rating'];
-                        }
-                        $i++;
-                    }
-                
-                    // iterator needs to be at least one for average below
-                    $i = ($i > 0) ? $i : 1;
-				?>
 				<div class="rating"
 					 data-rating="<?php echo $userRating; ?>"
 					 data-rateit-value="<?php echo $userRating; ?>"
 					 data-talk-id="<?php echo $talk['Talk']['id'] ?>"></div>
                 
-            <?php // if ($isAdmin) { ?>
-                <div>Avg = <?php echo ($avgRating/$i) . '<br />(rates-' . $i . ')'; ?></div>
-            <?php // } ?>
+            
+                <div>
+                    Avg = <?php echo $talkAverage; ?>
+                    <?php if ($isAdmin) { ?>        
+                        <?php  echo '<br />(' . $ratingList . ')'; ?>
+                    <?php } ?>
+                </div>
 			</td>
 			<td nowrap>
 				<?php echo h($talk['Talk']['created']); ?>
@@ -96,6 +104,7 @@ echo $this->element('pagination');
 				?>
 			</td>
 		</tr>
+            <?php } ?>
 		<?php endforeach; ?>
 </table>
 
