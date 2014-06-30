@@ -72,7 +72,7 @@ if ($isAdmin) {
 			<?php echo h($talk['Talk']['bio']); ?>
 			&nbsp;
 		</dd>
-		<dt><?php echo __('Location'); ?></dt>
+		<dt><?php echo __('Other Speaker Info'); ?></dt>
 		<dd>
 			<?php echo h($talk['Talk']['location']); ?>
 			&nbsp;
@@ -102,7 +102,7 @@ if ($isAdmin) {
 			<?php echo h($talk['Talk']['is_most_desired']); ?>
 			&nbsp;
 		</dd>
-		<dt><?php echo __('Other Info'); ?></dt>
+		<dt><?php echo __('Other Talk Info'); ?></dt>
 		<dd>
 			<?php echo h($talk['Talk']['other_info']); ?>
 			&nbsp;
