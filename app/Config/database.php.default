@@ -69,6 +69,18 @@ class DATABASE_CONFIG {
 		'prefix' => '',
 		//'encoding' => 'utf8',
 	);
+	
+	// used if you will import DB from OpenCFP application
+	public $cfp = array(
+        'datasource' => 'Database/Mysql',
+        'persistent' => false,
+        'host' => 'localhost',
+        'login' => 'user',
+        'password' => 'password',
+        'database' => 'database_name',
+        'prefix' => '',
+        //'encoding' => 'utf8',
+    );
 
 	public $test = array(
 		'datasource' => 'Database/Mysql',
