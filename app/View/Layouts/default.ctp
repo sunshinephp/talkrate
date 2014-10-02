@@ -48,7 +48,10 @@ $appName = 'Sunshine PHP Talks';
 					<div class="nav-collapse collapse">
 						<?php echo $this->Html->link($appName, '/', array('class' => 'brand')); ?>
 						<ul class="nav">
-							<li><?php echo $this->Html->link('Talks', '/'); ?></li>
+							<li><?php echo $this->Html->link('Talks', '/talks'); ?></li>
+						</ul>
+						<ul class="nav">
+							<li><?php echo $this->Html->link('Tutorials', '/tutorials'); ?></li>
 						</ul>
 						<?php
 						if ($isAdmin) {
