@@ -31,8 +31,7 @@ class TalksController extends AppController {
 //                    )
 //				),
                 // alter the next two lines depending on what type of talks we are to see
-                'conditions' => array('Talk.talk_type' => 'tutorial')
-// 				'conditions' => array('Talk.talk_type' => 'regular')
+ 				'conditions' => array('Talk.talk_type' => 'regular')
 			)
 		);
         
