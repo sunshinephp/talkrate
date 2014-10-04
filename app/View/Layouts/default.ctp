@@ -100,7 +100,7 @@ $appName = 'Sunshine PHP Talks';
 		</div>
 		<?php
 
-		echo $this->Html->script('http://code.jquery.com/jquery.min.js');
+		echo $this->Html->script('/js/jquery.min.js');
 
 		echo $this->fetch('script');
 		echo $this->element('sql_dump');
