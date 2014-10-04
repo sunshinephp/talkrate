@@ -33,7 +33,7 @@ $appName = 'Sunshine PHP Talks';
 		<!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
 		<!--[if lt IE 9]>
 		<?php
-		echo $this->Html->script('http://html5shim.googlecode.com/svn/trunk/html5.js');
+		echo $this->Html->script('/js/html5.js');
 		?>
 		<![endif]-->
 		<?php
