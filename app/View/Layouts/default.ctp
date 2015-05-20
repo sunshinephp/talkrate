@@ -16,7 +16,7 @@
  * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
 
-$appName = 'Sunshine PHP Talks';
+$appName = 'ZendCon Talks';
 ?>
 <html>
 	<head>
