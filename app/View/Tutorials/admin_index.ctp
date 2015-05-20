@@ -2,23 +2,24 @@
 	<h2><?php echo __('Tutorials'); ?></h2>
 	<table cellpadding="0" cellspacing="0">
 	<tr>
-			<th><?php echo $this->Paginator->sort('id'); ?></th>
-			<th><?php echo $this->Paginator->sort('name'); ?></th>
-			<th><?php echo $this->Paginator->sort('first_name'); ?></th>
-			<th><?php echo $this->Paginator->sort('last_name'); ?></th>
-			<th><?php echo $this->Paginator->sort('email'); ?></th>
-			<th><?php echo $this->Paginator->sort('bio'); ?></th>
-			<th><?php echo $this->Paginator->sort('location'); ?></th>
-			<th><?php echo $this->Paginator->sort('talk_level'); ?></th>
-			<th><?php echo $this->Paginator->sort('talk_category'); ?></th>
-			<th><?php echo $this->Paginator->sort('abstract'); ?></th>
-			<th><?php echo $this->Paginator->sort('is_most_desired'); ?></th>
-			<th><?php echo $this->Paginator->sort('other_info'); ?></th>
-			<th><?php echo $this->Paginator->sort('slides'); ?></th>
-			<th><?php echo $this->Paginator->sort('is_sponsor'); ?></th>
-			<th><?php echo $this->Paginator->sort('created'); ?></th>
-			<th><?php echo $this->Paginator->sort('modified'); ?></th>
-			<th class="actions"><?php echo __('Actions'); ?></th>
+		<th><?php echo $this->Paginator->sort('id'); ?></th>
+		<th><?php echo $this->Paginator->sort('name'); ?></th>
+		<th><?php echo $this->Paginator->sort('first_name'); ?></th>
+		<th><?php echo $this->Paginator->sort('last_name'); ?></th>
+		<th><?php echo $this->Paginator->sort('email'); ?></th>
+		<th><?php echo $this->Paginator->sort('bio'); ?></th>
+		<th><?php echo $this->Paginator->sort('speaker_info'); ?></th>
+		<th><?php echo $this->Paginator->sort('talk_level'); ?></th>
+		<th><?php echo $this->Paginator->sort('talk_track'); ?></th>
+		<th><?php echo $this->Paginator->sort('talk_category'); ?></th>
+		<th><?php echo $this->Paginator->sort('abstract'); ?></th>
+		<th><?php echo $this->Paginator->sort('is_most_desired'); ?></th>
+		<th><?php echo $this->Paginator->sort('other_info'); ?></th>
+		<th><?php echo $this->Paginator->sort('slides'); ?></th>
+		<th><?php echo $this->Paginator->sort('is_sponsor'); ?></th>
+		<th><?php echo $this->Paginator->sort('created'); ?></th>
+		<th><?php echo $this->Paginator->sort('modified'); ?></th>
+		<th class="actions"><?php echo __('Actions'); ?></th>
 	</tr>
 	<?php
 	foreach ($talks as $talk): ?>
@@ -29,8 +30,9 @@
 		<td><?php echo h($talk['Talk']['last_name']); ?>&nbsp;</td>
 		<td><?php echo h($talk['Talk']['email']); ?>&nbsp;</td>
 		<td><?php echo h($talk['Talk']['bio']); ?>&nbsp;</td>
-		<td><?php echo h($talk['Talk']['location']); ?>&nbsp;</td>
+		<td><?php echo h($talk['Talk']['speaker_info']); ?>&nbsp;</td>
 		<td><?php echo h($talk['Talk']['talk_level']); ?>&nbsp;</td>
+		<td><?php echo h($talk['Talk']['talk_track']); ?>&nbsp;</td>
 		<td><?php echo h($talk['Talk']['talk_category']); ?>&nbsp;</td>
 		<td><?php echo h($talk['Talk']['abstract']); ?>&nbsp;</td>
 		<td><?php echo h($talk['Talk']['is_most_desired']); ?>&nbsp;</td>

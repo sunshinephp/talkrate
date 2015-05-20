@@ -31,14 +31,19 @@
 			<?php echo h($talk['Talk']['bio']); ?>
 			&nbsp;
 		</dd>
-		<dt><?php echo __('Location'); ?></dt>
+		<dt><?php echo __('Speaker Info'); ?></dt>
 		<dd>
-			<?php echo h($talk['Talk']['location']); ?>
+			<?php echo h($talk['Talk']['speaker_info']); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Talk Level'); ?></dt>
 		<dd>
 			<?php echo h($talk['Talk']['talk_level']); ?>
+			&nbsp;
+		</dd>
+		<dt><?php echo __('Talk Track'); ?></dt>
+		<dd>
+			<?php echo h($talk['Talk']['talk_track']); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Talk Category'); ?></dt>

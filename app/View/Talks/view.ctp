@@ -74,7 +74,7 @@ if ($isAdmin) {
 		</dd>
 		<dt><?php echo __('Other Speaker Info'); ?></dt>
 		<dd>
-			<?php echo h($talk['Talk']['location']); ?>
+			<?php echo nl2br(h($talk['Talk']['speaker_info'])); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Talk Type'); ?></dt>
@@ -82,9 +82,9 @@ if ($isAdmin) {
 			<?php echo h($talk['Talk']['talk_type']); ?>
 			&nbsp;
 		</dd>
-		<dt><?php echo __('Talk Level'); ?></dt>
+		<dt><?php echo __('Talk Track'); ?></dt>
 		<dd>
-			<?php echo h($talk['Talk']['talk_level']); ?>
+			<?php echo h($talk['Talk']['talk_track']); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Talk Category'); ?></dt>
@@ -92,9 +92,14 @@ if ($isAdmin) {
 			<?php echo h($talk['Talk']['talk_category']); ?>
 			&nbsp;
 		</dd>
+		<dt><?php echo __('Talk Level'); ?></dt>
+		<dd>
+			<?php echo h($talk['Talk']['talk_level']); ?>
+			&nbsp;
+		</dd>
 		<dt><?php echo __('Abstract'); ?></dt>
 		<dd>
-			<?php echo h($talk['Talk']['abstract']); ?>
+			<?php echo nl2br(h($talk['Talk']['abstract'])); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Is Most Desired'); ?></dt>
@@ -104,7 +109,7 @@ if ($isAdmin) {
 		</dd>
 		<dt><?php echo __('Other Talk Info'); ?></dt>
 		<dd>
-			<?php echo h($talk['Talk']['other_info']); ?>
+			<?php echo nl2br(h($talk['Talk']['other_info'])); ?>
 			&nbsp;
 		</dd>
 	    <?php
