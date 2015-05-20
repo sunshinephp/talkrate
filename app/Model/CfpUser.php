@@ -43,19 +43,6 @@ class CfpUser extends AppModel {
 			'exclusive' => '',
 			'finderQuery' => '',
 			'counterQuery' => ''
-		),
-        'CfpSpeaker' => array(
-            'className' => 'CfpSpeaker',
-            'foreignKey' => 'user_id',
-            'dependent' => false,
-            'conditions' => '',
-            'fields' => '',
-            'order' => '',
-            'limit' => '',
-            'offset' => '',
-            'exclusive' => '',
-            'finderQuery' => '',
-            'counterQuery' => ''
-        )
+		)
 	);
 }
