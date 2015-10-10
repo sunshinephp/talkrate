@@ -85,6 +85,7 @@ class TalksController extends AppController {
 		$neighbors = $this->Talk->find('neighbors', array('fields' => array('id', 'name'), 'recursive' => -1));
 		$this->set('talk', $talk);
 		$this->set('neighbors', $neighbors);
+		$this->set('title_for_layout', 'View - ' . $talk['Talk']['name']);
 	}
 
 /**
@@ -166,8 +167,8 @@ class TalksController extends AppController {
         if ($this->request->is('post')) {
 
             try {
-                $cfpUsers = $this->CfpUser->find('all', array('order' => array('CfpUser.last_name ASC')));
-                
+                $cfpUsers = $this->CfpUser->find('all', array('order' => array('CfpUser.first_name ASC', 'CfpUser.last_name ASC')));
+
                 $this->Talk->cfpImport($cfpUsers);
                 
                 $this->Session->setFlash('Open CFP Talks imported successfully');

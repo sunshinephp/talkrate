@@ -16,7 +16,7 @@
  * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
 
-$appName = 'ZendCon Talks';
+$appName = 'SunshinePHP Talks';
 ?>
 <html>
 	<head>
@@ -28,7 +28,6 @@ $appName = 'ZendCon Talks';
 		echo $this->Html->meta('viewport', null, array('name' => 'viewport', 'content' => "width=device-width, initial-scale=1.0")) . "\n";
 		echo $this->Html->css('bootstrap.min') . "\n";
 		echo $this->Html->css('main') . "\n";
-		//echo $this->Html->script('/js/jquery.min.js') . "\n";
 		?>
 
 		<!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
