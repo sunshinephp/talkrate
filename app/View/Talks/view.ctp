@@ -45,6 +45,35 @@ if ($isAdmin) {
                  data-rating="<?php echo $talk['TalkRating']['rating'] ?>"
                  data-rateit-value="<?php echo $talk['TalkRating']['rating'] ?>"
                  data-talk-id="<?php echo $talk['Talk']['id'] ?>"></div>
+
+			<div>
+				<?php
+				$i = 0;
+				$avgRating = 0;
+				$userRating = 0;
+				$ratingList = '';
+
+				// get average rating for admin, and the users current rating
+				foreach ($talk['TalkRating'] as $rating) {
+					if (!isset($rating['user_id'])) {
+						continue;
+					}
+					$avgRating += $rating['rating'];
+					$ratingList .= $rating['user_id'] . "=" . $rating['rating'] . ', ';
+
+					if ($rating['user_id'] == $user_id) {
+						$userRating = $rating['rating'];
+					}
+					$i++;
+				}
+
+				$talkAverage = round(($avgRating/(($i > 0) ? $i : 1)));
+				?>
+				Avg = <?php echo $talkAverage; ?>
+				<?php if ($isAdmin) { ?>
+					<?php  echo '<br />(' . $ratingList . ')'; ?>
+				<?php } ?>
+			</div>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Name'); ?></dt>
