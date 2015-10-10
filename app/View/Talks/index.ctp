@@ -19,7 +19,6 @@ echo $this->element('pagination');
 		<th nowrap><?php echo $this->Paginator->sort('Talk.name', 'Name'); ?></th>
 		<th nowrap><?php echo $this->Paginator->sort('Talk.first_name', 'First Name'); ?></th>
 		<th nowrap><?php echo $this->Paginator->sort('Talk.last_name', 'Last Name'); ?></th>
-		<th nowrap><?php echo $this->Paginator->sort('Talk.talk_track', 'Track'); ?></th>
 		<th nowrap><?php echo $this->Paginator->sort('Talk.talk_category', 'Category'); ?></th>
 		<th nowrap><?php echo $this->Paginator->sort('Talk.talk_level', 'Level'); ?></th>
 		<th nowrap><?php echo __('Your Rating'); ?></th>
@@ -70,7 +69,6 @@ echo $this->element('pagination');
 			</td>
 			<td nowrap><?php echo h($talk['Talk']['first_name']); ?>&nbsp;</td>
 			<td nowrap><?php echo h($talk['Talk']['last_name']); ?>&nbsp;</td>
-			<td nowrap><?php echo h($talk['Talk']['talk_track']); ?>&nbsp;</td>
 			<td nowrap><?php echo h($talk['Talk']['talk_category']); ?>&nbsp;</td>
 			<td nowrap><?php echo h($talk['Talk']['talk_level']); ?>&nbsp;</td>
 			<td nowrap>
