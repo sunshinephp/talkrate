@@ -17,9 +17,8 @@
 		echo $this->Form->input('last_name');
 		echo $this->Form->input('email');
 		echo $this->Form->input('bio');
-		echo $this->Form->input('speaker_info');
+		echo $this->Form->input('location');
 		echo $this->Form->input('talk_level');
-		echo $this->Form->input('talk_track');
 		echo $this->Form->input('talk_category');
 		echo $this->Form->input('abstract');
 		echo $this->Form->input('is_most_desired');

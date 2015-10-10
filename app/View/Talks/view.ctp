@@ -74,17 +74,12 @@ if ($isAdmin) {
 		</dd>
 		<dt><?php echo __('Other Speaker Info'); ?></dt>
 		<dd>
-			<?php echo nl2br(h($talk['Talk']['speaker_info'])); ?>
+			<?php echo nl2br(h($talk['Talk']['location'])); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Talk Type'); ?></dt>
 		<dd>
 			<?php echo h($talk['Talk']['talk_type']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Talk Track'); ?></dt>
-		<dd>
-			<?php echo h($talk['Talk']['talk_track']); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Talk Category'); ?></dt>
