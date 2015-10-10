@@ -137,4 +137,4 @@ if ($isAdmin) {
 	</dl>
 
 <?php
-echo $this->element('Talks/rating_javascript');
+echo $this->element('Talks/rating_javascript') . "\n";

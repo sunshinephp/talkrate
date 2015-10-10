@@ -103,5 +103,5 @@ echo $this->element('pagination');
 </table>
 
 <?php
-echo $this->element('pagination');
-echo $this->element('Talks/rating_javascript');
+echo $this->element('pagination') . "\n";
+echo $this->element('Talks/rating_javascript') . "\n";

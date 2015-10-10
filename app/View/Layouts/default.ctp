@@ -22,23 +22,24 @@ $appName = 'ZendCon Talks';
 	<head>
 		<?php echo $this->Html->charset(); ?>
 		<title>
-			<?php echo $title_for_layout; ?>
+			Talkrate: <?php echo $title_for_layout . "\n"; ?>
 		</title>
 		<?php
-		echo $this->Html->meta('viewport', null, array('name' => 'viewport', 'content' => "width=device-width, initial-scale=1.0"));
-		echo $this->Html->css('bootstrap.min');
-		echo $this->Html->css('main');
+		echo $this->Html->meta('viewport', null, array('name' => 'viewport', 'content' => "width=device-width, initial-scale=1.0")) . "\n";
+		echo $this->Html->css('bootstrap.min') . "\n";
+		echo $this->Html->css('main') . "\n";
+		//echo $this->Html->script('/js/jquery.min.js') . "\n";
 		?>
 
 		<!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
 		<!--[if lt IE 9]>
 		<?php
-		echo $this->Html->script('/js/html5.js');
+		echo $this->Html->script('/js/html5.js') . "\n";
 		?>
 		<![endif]-->
 		<?php
-		echo $this->fetch('meta');
-		echo $this->fetch('css');
+		echo $this->fetch('meta') . "\n";
+		echo $this->fetch('css') . "\n";
 		?>
 	</head>
 	<body>
@@ -100,10 +101,10 @@ $appName = 'ZendCon Talks';
 		</div>
 		<?php
 
-		echo $this->Html->script('/js/jquery.min.js');
+		echo $this->Html->script('/js/jquery.min.js') . "\n";
 
-		echo $this->fetch('script');
-		echo $this->element('sql_dump');
+		echo $this->fetch('script') . "\n";
+		echo $this->element('sql_dump') . "\n";
 		?>
 	</body>
 </html>
