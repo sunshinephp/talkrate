@@ -99,12 +99,13 @@ class TalkRating extends AppModel {
 
 		$fp = fopen($path, 'w');
 
-		fputcsv($fp, array('talk_name', 'speaker_name', 'rating', 'rated_by'));
+		fputcsv($fp, array('talk_name', 'speaker_name', 'type', 'rating', 'rated_by'));
 
 		foreach ($talks_and_ratings as $talk_and_rating) {
 			$fields = array(
 				$talk_and_rating['Talk']['name'],
 				$talk_and_rating['Talk']['first_name'] . ' ' . $talk_and_rating['Talk']['last_name'],
+                $talk_and_rating['Talk']['talk_type'],
 				$talk_and_rating['TalkRating']['rating'],
 				$talk_and_rating['User']['email']
 			);
