@@ -79,6 +79,10 @@ class TalkRating extends AppModel {
 	);
 
 	public function buildCsvFileForExport($path = '') {
+	    if ($path != '') {
+	        unlink($path);
+        }
+        
 		$sql = "
 			SELECT
 				*
