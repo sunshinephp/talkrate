@@ -83,7 +83,7 @@ class TutorialsController extends AppController {
                 ),
                 'conditions' => array('Talk.id' => $id)
             ));
-        $neighbors = $this->Talk->find('neighbors', array('fields' => array('id', 'name'), 'recursive' => -1));
+        $neighbors = $this->Talk->find('neighbors', array('fields' => array('id', 'name'), 'conditions' => array('Talk.talk_type' => 'tutorial'), 'recursive' => -1));
         $this->set('talk', $talk);
         $this->set('neighbors', $neighbors);
         $this->set('title_for_layout', 'View - ' . $talk['Talk']['name']);
