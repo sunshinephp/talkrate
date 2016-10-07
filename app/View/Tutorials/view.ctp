@@ -26,7 +26,11 @@ if ($isAdmin) {
 			?>
             <li><?php echo 'Next tutorial: ' . $this->Html->link($neighbors['next']['Talk']['name'], array('action' => 'view', h($neighbors['next']['Talk']['id']))); ?></li>
 			<?php
-		}
+		} else {
+            ?>
+            <li><?php echo 'This was the last tutorial, remember to rate ' . $this->Html->link('Talks', '/talks'); ?></li>
+            <?php
+        }
 		?>
 	</ul>
 </section>
