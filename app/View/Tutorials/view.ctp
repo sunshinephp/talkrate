@@ -56,21 +56,69 @@ if ($isAdmin) {
 			<?php echo h($talk['Talk']['name']); ?>
 			&nbsp;
 		</dd>
-		<dt><?php echo __('First Name'); ?></dt>
-		<dd>
-			<?php echo h($talk['Talk']['first_name']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Last Name'); ?></dt>
-		<dd>
-			<?php echo h($talk['Talk']['last_name']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Email'); ?></dt>
-		<dd>
-			<?php echo h($talk['Talk']['email']); ?>
-			&nbsp;
-		</dd>
+        <dt><?php echo __('Talk Type'); ?></dt>
+        <dd>
+            <?php echo h($talk['Talk']['talk_type']); ?>
+            &nbsp;
+        </dd>
+        <dt><?php echo __('Talk Track'); ?></dt>
+        <dd>
+            <?php echo h($talk['Talk']['talk_track']); ?>
+            &nbsp;
+        </dd>
+        <dt><?php echo __('Talk Category'); ?></dt>
+        <dd>
+            <?php echo h($talk['Talk']['talk_category']); ?>
+            &nbsp;
+        </dd>
+        <dt><?php echo __('Talk Level'); ?></dt>
+        <dd>
+            <?php echo h($talk['Talk']['talk_level']); ?>
+            &nbsp;
+        </dd>
+        <dt><?php echo __('Abstract'); ?></dt>
+        <dd>
+            <?php echo nl2br(h($talk['Talk']['abstract'])); ?>
+            &nbsp;
+        </dd>
+        <dt><?php echo __('Is Most Desired'); ?></dt>
+        <dd>
+            <?php echo h($talk['Talk']['is_most_desired']); ?>
+            &nbsp;
+        </dd>
+        <dt><?php echo __('Other Talk Info'); ?></dt>
+        <dd>
+            <?php echo nl2br(h($talk['Talk']['other_info'])); ?>
+            &nbsp;
+        </dd>
+        <?php
+        if ($talk['Talk']['slides']) {
+            ?>
+            <dt><?php echo __('Slides'); ?></dt>
+            <dd>
+                <?php echo $this->Html->link($talk['Talk']['slides'], $talk['Talk']['slides'], array('escape' => false, 'target' => '_blank')); ?>
+                <span class="label label-info">Opens in a New Window</span>
+                &nbsp;
+            </dd>
+            <?php
+        }
+        ?>
+        <h2>Speaker Info</h2>
+        <dt><?php echo __('First Name'); ?></dt>
+        <dd>
+            <?php echo h($talk['Talk']['first_name']); ?>
+            &nbsp;
+        </dd>
+        <dt><?php echo __('Last Name'); ?></dt>
+        <dd>
+            <?php echo h($talk['Talk']['last_name']); ?>
+            &nbsp;
+        </dd>
+        <dt><?php echo __('Email'); ?></dt>
+        <dd>
+            <?php echo h($talk['Talk']['email']); ?>
+            &nbsp;
+        </dd>
 		<dt><?php echo __('Bio'); ?></dt>
 		<dd>
 			<?php echo h($talk['Talk']['bio']); ?>
@@ -81,53 +129,6 @@ if ($isAdmin) {
 			<?php echo nl2br(h($talk['Talk']['speaker_info'])); ?>
 			&nbsp;
 		</dd>
-		<dt><?php echo __('Talk Type'); ?></dt>
-		<dd>
-			<?php echo h($talk['Talk']['talk_type']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Talk Track'); ?></dt>
-		<dd>
-			<?php echo h($talk['Talk']['talk_track']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Talk Category'); ?></dt>
-		<dd>
-			<?php echo h($talk['Talk']['talk_category']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Talk Level'); ?></dt>
-		<dd>
-			<?php echo h($talk['Talk']['talk_level']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Abstract'); ?></dt>
-		<dd>
-			<?php echo nl2br(h($talk['Talk']['abstract'])); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Is Most Desired'); ?></dt>
-		<dd>
-			<?php echo h($talk['Talk']['is_most_desired']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Other Talk Info'); ?></dt>
-		<dd>
-			<?php echo nl2br(h($talk['Talk']['other_info'])); ?>
-			&nbsp;
-		</dd>
-	    <?php
-		if ($talk['Talk']['slides']) {
-			?>
-            <dt><?php echo __('Slides'); ?></dt>
-            <dd>
-				<?php echo $this->Html->link($talk['Talk']['slides'], $talk['Talk']['slides'], array('escape' => false, 'target' => '_blank')); ?>
-				<span class="label label-info">Opens in a New Window</span>
-                &nbsp;
-            </dd>
-			<?php
-		}
-		?>
 		<dt><?php echo __('Is Sponsor'); ?></dt>
 		<dd>
 			<?php echo h($talk['Talk']['is_sponsor']); ?>
