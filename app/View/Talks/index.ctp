@@ -8,7 +8,8 @@ if ($isAdmin) {
 		<?php echo $this->Html->link('Add Talk', array('controller' => 'talks', 'action' => 'add'), array('class' => array('btn', 'btn-primary'))); ?>
 		<?php echo $this->Html->link('Upload Talks', array('controller' => 'talks', 'action' => 'upload'), array('class' => array('btn'))); ?>
         <?php echo $this->Html->link('Import OpenCFP Talks', array('controller' => 'talks', 'action' => 'cfpimport'), array('class' => array('btn'))); ?>
-		<?php echo $this->Html->link('Export Talks & Ratings', array('controller' => 'talk_ratings', 'action' => 'export'), array('class' => array('btn'))); ?>
+		<?php echo $this->Html->link('Export All Ratings', array('controller' => 'talk_ratings', 'action' => 'export'), array('class' => array('btn'))); ?>
+        <?php echo $this->Html->link('Export Avg Ratings', array('controller' => 'talk_ratings', 'action' => 'export_avg'), array('class' => array('btn'))); ?>
 	</section>
 	<?php
 }
