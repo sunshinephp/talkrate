@@ -132,7 +132,9 @@ class TalkRating extends AppModel {
 			LEFT JOIN
 				users AS User ON User.id = TalkRating.user_id
 			GROUP BY
-				Talk.name
+				TalkRating.talk_id
+			ORDER BY
+				Talk.talk_type, Talk.first_name, Talk.last_name, Talk.name ASC
 		";
         $talks_and_ratings = $this->query($sql, false);
         
