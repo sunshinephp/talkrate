@@ -116,4 +116,42 @@ class TalkRating extends AppModel {
 
 		return true;
 	}
+    
+    public function buildCsvFileForExportAvg($path = '') {
+        if ($path != '') {
+            unlink($path);
+        }
+        
+        $sql = "
+			SELECT
+				Talk.name, Talk.first_name, Talk.last_name, Talk.talk_type, AVG(TalkRating.rating) as average, User.email
+			FROM
+				talk_ratings AS TalkRating
+			INNER JOIN
+				talks AS Talk ON Talk.id = TalkRating.talk_id
+			LEFT JOIN
+				users AS User ON User.id = TalkRating.user_id
+			GROUP BY
+				Talk.name
+		";
+        $talks_and_ratings = $this->query($sql, false);
+        
+        $fp = fopen($path, 'w');
+        
+        fputcsv($fp, array('talk_name', 'speaker_name', 'type', 'avg_rating'));
+        
+        foreach ($talks_and_ratings as $talk_and_rating) {
+            $fields = array(
+                $talk_and_rating['Talk']['name'],
+                $talk_and_rating['Talk']['first_name'] . ' ' . $talk_and_rating['Talk']['last_name'],
+                $talk_and_rating['Talk']['talk_type'],
+                round($talk_and_rating[0]['average'])
+            );
+            fputcsv($fp, $fields);
+        }
+        
+        fclose($fp);
+        
+        return true;
+    }
 }
