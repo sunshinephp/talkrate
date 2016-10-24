@@ -131,13 +131,28 @@ class TalkRatingsController extends AppController {
 		$this->TalkRating->buildCsvFileForExport($path);
 		$params = array(
 			'id'        => $file_name,
-			'name'      => 'example',
+			'name'      => $file_name,
 			'download'  => true,
 			'extension' => 'csv',
 			'path'      => TMP
 		);
 		$this->set($params);
 	}
+    
+    public function export_avg() {
+        $this->viewClass = 'Media';
+        $file_name = 'talk_ratings.csv';
+        $path = TMP . DS . $file_name;
+        $this->TalkRating->buildCsvFileForExportAvg($path);
+        $params = array(
+            'id'        => $file_name,
+            'name'      => $file_name,
+            'download'  => true,
+            'extension' => 'csv',
+            'path'      => TMP
+        );
+        $this->set($params);
+    }
 
 /**
  * admin_index method
