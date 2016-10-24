@@ -86,6 +86,7 @@ class TalksController extends AppController {
 		$this->set('talk', $talk);
 		$this->set('neighbors', $neighbors);
 		$this->set('title_for_layout', 'View - ' . $talk['Talk']['name']);
+        $this->set('user_id', $this->Auth->user('id'));
 	}
 
 /**
