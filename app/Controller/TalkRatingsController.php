@@ -141,7 +141,7 @@ class TalkRatingsController extends AppController {
     
     public function export_avg() {
         $this->viewClass = 'Media';
-        $file_name = 'talk_ratings.csv';
+        $file_name = 'talk_ratings_avg.csv';
         $path = TMP . DS . $file_name;
         $this->TalkRating->buildCsvFileForExportAvg($path);
         $params = array(
