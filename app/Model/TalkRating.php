@@ -99,7 +99,7 @@ class TalkRating extends AppModel {
 
 		$fp = fopen($path, 'w');
 
-		fputcsv($fp, array('talk_name', 'speaker_name', 'type', 'rating', 'rated_by'));
+		fputcsv($fp, array('talk_name', 'speaker_name', 'type', 'rating', 'rated_by', 'first_name', 'last_name', 'email'));
 
 		foreach ($talks_and_ratings as $talk_and_rating) {
 			$fields = array(
@@ -107,7 +107,10 @@ class TalkRating extends AppModel {
 				$talk_and_rating['Talk']['first_name'] . ' ' . $talk_and_rating['Talk']['last_name'],
                 $talk_and_rating['Talk']['talk_type'],
 				$talk_and_rating['TalkRating']['rating'],
-				$talk_and_rating['User']['email']
+				$talk_and_rating['User']['email'],
+                $talk_and_rating['Talk']['first_name'],
+                $talk_and_rating['Talk']['last_name'],
+                $talk_and_rating['Talk']['email']
 			);
 			fputcsv($fp, $fields);
 		}
@@ -124,7 +127,7 @@ class TalkRating extends AppModel {
         
         $sql = "
 			SELECT
-				Talk.name, Talk.first_name, Talk.last_name, Talk.talk_type, AVG(TalkRating.rating) as average, User.email
+				Talk.name, Talk.first_name, Talk.last_name, Talk.talk_type, Talk.email, AVG(TalkRating.rating) as average, User.email
 			FROM
 				talk_ratings AS TalkRating
 			INNER JOIN
@@ -140,14 +143,17 @@ class TalkRating extends AppModel {
         
         $fp = fopen($path, 'w');
         
-        fputcsv($fp, array('talk_name', 'speaker_name', 'type', 'avg_rating'));
+        fputcsv($fp, array('talk_name', 'speaker_name', 'type', 'avg_rating', 'first_name', 'last_name', 'email'));
         
         foreach ($talks_and_ratings as $talk_and_rating) {
             $fields = array(
                 $talk_and_rating['Talk']['name'],
                 $talk_and_rating['Talk']['first_name'] . ' ' . $talk_and_rating['Talk']['last_name'],
                 $talk_and_rating['Talk']['talk_type'],
-                round($talk_and_rating[0]['average'])
+                round($talk_and_rating[0]['average']),
+                $talk_and_rating['Talk']['first_name'],
+                $talk_and_rating['Talk']['last_name'],
+                $talk_and_rating['Talk']['email']
             );
             fputcsv($fp, $fields);
         }
