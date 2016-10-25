@@ -158,6 +158,7 @@ class Talk extends AppModel {
 							'last_name' => $row[2],
 							'email' => $row[3],
 							'bio' => $row[4],
+                            'location' => $row[4],
 							'speaker_info' => $row[5],
 							'talk_type' => $row[6],
 							'talk_level' => $row[7],
