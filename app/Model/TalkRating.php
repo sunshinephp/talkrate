@@ -99,7 +99,7 @@ class TalkRating extends AppModel {
 
 		$fp = fopen($path, 'w');
 
-		fputcsv($fp, array('talk_name', 'speaker_name', 'type', 'rating', 'rated_by', 'first_name', 'last_name', 'email'));
+		fputcsv($fp, array('talk_name', 'speaker_name', 'type', 'rating', 'rated_by', 'first_name', 'last_name', 'email', 'location'));
 
 		foreach ($talks_and_ratings as $talk_and_rating) {
 			$fields = array(
@@ -127,7 +127,7 @@ class TalkRating extends AppModel {
         
         $sql = "
 			SELECT
-				Talk.name, Talk.first_name, Talk.last_name, Talk.talk_type, Talk.email, AVG(TalkRating.rating) as average, User.email
+				Talk.name, Talk.first_name, Talk.last_name, Talk.talk_type, Talk.email, AVG(TalkRating.rating) as average, User.email, Talk.location
 			FROM
 				talk_ratings AS TalkRating
 			INNER JOIN
@@ -143,7 +143,7 @@ class TalkRating extends AppModel {
         
         $fp = fopen($path, 'w');
         
-        fputcsv($fp, array('talk_name', 'speaker_name', 'type', 'avg_rating', 'first_name', 'last_name', 'email'));
+        fputcsv($fp, array('talk_name', 'speaker_name', 'type', 'avg_rating', 'first_name', 'last_name', 'email', 'location'));
         
         foreach ($talks_and_ratings as $talk_and_rating) {
             $fields = array(
@@ -153,7 +153,8 @@ class TalkRating extends AppModel {
                 round($talk_and_rating[0]['average']),
                 $talk_and_rating['Talk']['first_name'],
                 $talk_and_rating['Talk']['last_name'],
-                $talk_and_rating['Talk']['email']
+                $talk_and_rating['Talk']['email'],
+                $talk_and_rating['Talk']['location']
             );
             fputcsv($fp, $fields);
         }
