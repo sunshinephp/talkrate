@@ -149,6 +149,11 @@ if ($isAdmin) {
 			<?php echo h($talk['Talk']['email']); ?>
 			&nbsp;
 		</dd>
+        <dt><?php echo __('Location'); ?></dt>
+        <dd>
+            <?php echo h($talk['Talk']['location']); ?>
+            &nbsp;
+        </dd>
 		<dt><?php echo __('Bio'); ?></dt>
 		<dd>
 			<?php echo h($talk['Talk']['bio']); ?>
@@ -156,7 +161,7 @@ if ($isAdmin) {
 		</dd>
 		<dt><?php echo __('Other Speaker Info'); ?></dt>
 		<dd>
-			<?php echo nl2br(h($talk['Talk']['location'])); ?>
+			<?php echo nl2br(h($talk['Talk']['speaker_info'])); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Is Sponsor'); ?></dt>
