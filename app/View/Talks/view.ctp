@@ -151,7 +151,7 @@ if ($isAdmin) {
 		</dd>
         <dt><?php echo __('Location'); ?></dt>
         <dd>
-            <?php echo h($talk['Talk']['location']); ?>
+            <a href="https://www.google.com/flights/#search;f=<?php echo h($talk['Talk']['location']); ?>;t=MIA" target="_blank"><?php echo h($talk['Talk']['location']); ?></a>
             &nbsp;
         </dd>
 		<dt><?php echo __('Bio'); ?></dt>
